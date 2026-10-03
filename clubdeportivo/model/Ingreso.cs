@@ -11,6 +11,12 @@ namespace clubdeportivo.model
         private DateTime ingresoHorario;
         private DateTime egresoHorario;
 
+        public Ingreso(Persona persona, DateTime ingresoHorario)
+        {
+            Persona = persona;
+            IngresoHorario = ingresoHorario;
+        }
+
         public long Id { get => id; set => id = value; }
   
         public DateTime EgresoHorario { get => egresoHorario; set => egresoHorario = value; }

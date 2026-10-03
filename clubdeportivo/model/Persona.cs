@@ -14,6 +14,17 @@ namespace clubdeportivo.model
         private string telefono;
         private string email;
 
+        public Persona(string nombre, string apellido, string dni, string direccion, string telefono, 
+            string email)
+        {
+            Nombre = nombre;
+            Apellido = apellido;
+            Dni = dni;
+            Direccion = direccion;
+            Telefono = telefono;
+            Email = email;
+        }
+
         public long Id { get => id; set => id = value; }
         public string Nombre { get => nombre; set => nombre = value; }
         public string Apellido { get => apellido; set => apellido = value; }

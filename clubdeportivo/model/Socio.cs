@@ -4,12 +4,19 @@ using System.Text;
 
 namespace clubdeportivo.model
 {
-    internal class Socio
+    internal class Socio : Persona
     {
         private string numAfiliado;
         private DateOnly fechaAlta;
         private DateOnly fechaBaja;
         private Boolean aptoFisico;
+
+        public Socio(string nombre, string apellido, string dni, string direccion, string telefono,
+            string email, Boolean aptoFisico) : base(nombre, apellido, dni, direccion, telefono, email)
+        {
+            AptoFisico = aptoFisico;
+            fechaAlta = new DateOnly();
+        }
 
         public string NumAfiliado { get => numAfiliado; set => numAfiliado = value; }
         public DateOnly FechaAlta { get => fechaAlta; set => fechaAlta = value; }
