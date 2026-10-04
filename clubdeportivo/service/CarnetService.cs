@@ -9,6 +9,12 @@ namespace clubdeportivo.service
     internal class CarnetService
     {
         private CarnetRepository repository;
+
+        public CarnetService()
+        {
+            repository = new CarnetRepository();
+        }
+
         public Carnet emitirCarnet(long id)
         {
             Carnet carnet = new Carnet(id);

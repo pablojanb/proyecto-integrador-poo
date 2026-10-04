@@ -9,6 +9,11 @@ namespace clubdeportivo.service
     internal class IngresoService
     {
         private IngresoRepository repository;
+
+        public IngresoService()
+        {
+            repository = new IngresoRepository();
+        }
         public Ingreso registrarIngreso(Persona persona, DateTime ingresoHorario)
         {
             Ingreso ingreso = new Ingreso(persona, ingresoHorario);

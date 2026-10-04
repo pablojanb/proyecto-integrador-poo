@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dashboard));
             lblTitle = new Label();
             pictureBox1 = new PictureBox();
             btnAltaSocio = new Button();
@@ -52,9 +53,10 @@
             // 
             // pictureBox1
             // 
-            pictureBox1.Location = new Point(51, 188);
+            pictureBox1.Image = Properties.Resources.wallpaper;
+            pictureBox1.Location = new Point(90, 200);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(374, 215);
+            pictureBox1.Size = new Size(292, 193);
             pictureBox1.TabIndex = 1;
             pictureBox1.TabStop = false;
             // 
@@ -123,6 +125,7 @@
             btnSalir.TabIndex = 7;
             btnSalir.Text = "Salir";
             btnSalir.UseVisualStyleBackColor = false;
+            btnSalir.Click += btnSalir_Click;
             // 
             // Dashboard
             // 
@@ -137,8 +140,10 @@
             Controls.Add(btnAltaSocio);
             Controls.Add(pictureBox1);
             Controls.Add(lblTitle);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Dashboard";
-            Text = "Dashboard";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "IFTS 29 - Dashboard";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
