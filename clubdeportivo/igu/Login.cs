@@ -2,6 +2,10 @@ using clubdeportivo.config;
 using clubdeportivo.igu;
 using clubdeportivo.model;
 using clubdeportivo.service;
+using Microsoft.Extensions.Configuration;
+using MySql.Data.MySqlClient;
+using System.Data;
+using System.Data.Common;
 using System.Diagnostics;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
@@ -12,10 +16,12 @@ namespace clubdeportivo
         private PersonaService personaService;
         private EmpleadoAdministrativo empleado;
         private EmpleadoAdministrativoService empleadoAdministrativoService;
+
         public Login()
         {
             personaService = new PersonaService();
             empleadoAdministrativoService = new EmpleadoAdministrativoService();
+            InicializarDatos.InicializarDB();
             InitializeComponent();
         }
 
@@ -23,6 +29,7 @@ namespace clubdeportivo
         {
 
         }
+
 
         private void UserText_TextChanged(object sender, EventArgs e)
         {

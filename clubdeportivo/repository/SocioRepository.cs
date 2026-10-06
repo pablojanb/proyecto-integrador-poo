@@ -18,7 +18,7 @@ namespace clubdeportivo.repository
             MySqlConnection dbConnection = null;
             try
             {
-                dbConnection = DBConection.getInstancia().CrearConcexion();
+                dbConnection = DBConection.CrearConexion();
                 var query = "SELECT nombre, apellido, dni, direccion, telefono, email, " +
                     "num_afiliado, fecha_alta, fecha_baja, apto_fisico " +
                     "FROM personas p " +

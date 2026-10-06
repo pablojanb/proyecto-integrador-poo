@@ -16,7 +16,7 @@ namespace clubdeportivo.repository
             MySqlConnection dbConnection = null;
             try
             {
-                dbConnection = DBConection.getInstancia().CrearConcexion();
+                dbConnection = DBConection.CrearConexion();
                 var query = "SELECT num_legajo, username, password " +
                     "FROM empleados_administrativos " +
                     "WHERE username = @username";

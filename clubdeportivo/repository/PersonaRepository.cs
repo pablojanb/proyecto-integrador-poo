@@ -17,7 +17,7 @@ namespace clubdeportivo.repository
             MySqlConnection dbConnection = null;
             try
             {
-                dbConnection = DBConection.getInstancia().CrearConcexion();
+                dbConnection = DBConection.CrearConexion();
                 var query = "SELECT id, nombre, apellido, dni, direccion, telefono, email " +
                     "FROM personas p " +
                     "WHERE p.dni = @dni";
@@ -73,7 +73,7 @@ namespace clubdeportivo.repository
             MySqlConnection dbConnection = null;
             try
             {
-                dbConnection = DBConection.getInstancia().CrearConcexion();
+                dbConnection = DBConection.CrearConexion();
                 var query = "SELECT p.id, nombre, apellido, dni, direccion, telefono, email " +
                     "FROM personas p " +
                     "JOIN socios s ON p.id = s.id " +
@@ -129,7 +129,7 @@ namespace clubdeportivo.repository
             MySqlConnection dbConnection = null;
             try
             {
-                dbConnection = DBConection.getInstancia().CrearConcexion();
+                dbConnection = DBConection.CrearConexion();
                 var query = "SELECT p.id, nombre, apellido, dni, direccion, telefono, email " +
                     "FROM personas p " +
                     "JOIN empleados_administrativos ea ON p.id = ea.id " +
