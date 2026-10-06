@@ -14,6 +14,7 @@ namespace clubdeportivo.model
         private string telefono;
         private string email;
 
+        public Persona() { }
         public Persona(string nombre, string apellido, string dni, string direccion, string telefono, 
             string email)
         {

@@ -1,15 +1,21 @@
+using clubdeportivo.config;
 using clubdeportivo.igu;
+using clubdeportivo.model;
 using clubdeportivo.service;
 using System.Diagnostics;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace clubdeportivo
 {
     public partial class Login : Form
     {
-        private SocioService socioService;
+        private PersonaService personaService;
+        private EmpleadoAdministrativo empleado;
+        private EmpleadoAdministrativoService empleadoAdministrativoService;
         public Login()
         {
-            socioService = new SocioService();
+            personaService = new PersonaService();
+            empleadoAdministrativoService = new EmpleadoAdministrativoService();
             InitializeComponent();
         }
 
@@ -24,6 +30,8 @@ namespace clubdeportivo
 
         private void PassText_TextChanged(object sender, EventArgs e)
         {
+            txtPassword.UseSystemPasswordChar = true;
+
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -49,10 +57,13 @@ namespace clubdeportivo
         {
             string username = txtUsername.Text;
             string password = txtPassword.Text;
-            Boolean estaLogueado = socioService.validarLogin(username, password);
-            if (estaLogueado)
+            
+            empleado = empleadoAdministrativoService.obtenerEmpleadoPorUsername(username);
+            Boolean passwordCorrecto = password == empleado.Password;
+            if (passwordCorrecto)
             {
-                Dashboard dashboard = new Dashboard();
+                inicializarSesion();
+                Dashboard dashboard = new Dashboard(this);
                 dashboard.Show();
                 this.Hide();
             }
@@ -61,8 +72,18 @@ namespace clubdeportivo
                 CredencialesIncorrectas popUp = new CredencialesIncorrectas();
                 popUp.ShowDialog();
             }
+            txtUsername.Text = "Ingrese su usuario";
+            txtPassword.Text = "Ingrese su contraseña";
+            txtPassword.UseSystemPasswordChar = false;
         }
 
+        private void inicializarSesion()
+        {
+            Persona persona = personaService.obtenerPersonaPorNroLegajo(empleado.NumLegajo);
+            Session session = Session.getInstance();
+            session.Nombre = persona.Nombre;
+            session.Username = empleado.Username;
+        }
         private void txtUsername_Click(object sender, EventArgs e)
         {
             txtUsername.Text = "";
@@ -86,6 +107,7 @@ namespace clubdeportivo
             if (txtPassword.Text == "")
             {
                 txtPassword.Text = "Ingrese su contraseña";
+                txtPassword.UseSystemPasswordChar = false;
             }
         }
     }

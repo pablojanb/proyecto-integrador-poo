@@ -80,7 +80,7 @@
             btnAceptar.Name = "btnAceptar";
             btnAceptar.Size = new Size(206, 41);
             btnAceptar.TabIndex = 14;
-            btnAceptar.Text = "Aceptar";
+            btnAceptar.Text = "Ingresar";
             btnAceptar.UseVisualStyleBackColor = false;
             btnAceptar.Click += btnAceptar_Click;
             // 
@@ -90,9 +90,9 @@
             lblLogin.Font = new Font("Segoe UI", 20F);
             lblLogin.Location = new Point(406, 177);
             lblLogin.Name = "lblLogin";
-            lblLogin.Size = new Size(103, 46);
+            lblLogin.Size = new Size(118, 46);
             lblLogin.TabIndex = 15;
-            lblLogin.Text = "Login";
+            lblLogin.Text = "LOGIN";
             // 
             // Login
             // 

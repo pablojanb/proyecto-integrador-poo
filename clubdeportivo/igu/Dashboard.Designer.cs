@@ -44,7 +44,7 @@
             // 
             lblTitle.AutoSize = true;
             lblTitle.Font = new Font("Segoe UI", 30F);
-            lblTitle.Location = new Point(167, 62);
+            lblTitle.Location = new Point(227, 73);
             lblTitle.Name = "lblTitle";
             lblTitle.Size = new Size(504, 67);
             lblTitle.TabIndex = 0;
@@ -54,7 +54,7 @@
             // pictureBox1
             // 
             pictureBox1.Image = Properties.Resources.wallpaper;
-            pictureBox1.Location = new Point(90, 200);
+            pictureBox1.Location = new Point(112, 245);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(292, 193);
             pictureBox1.TabIndex = 1;
@@ -64,9 +64,9 @@
             // 
             btnAltaSocio.BackColor = Color.Black;
             btnAltaSocio.ForeColor = Color.White;
-            btnAltaSocio.Location = new Point(495, 188);
+            btnAltaSocio.Location = new Point(600, 212);
             btnAltaSocio.Name = "btnAltaSocio";
-            btnAltaSocio.Size = new Size(241, 29);
+            btnAltaSocio.Size = new Size(241, 52);
             btnAltaSocio.TabIndex = 2;
             btnAltaSocio.Text = "Alta socio";
             btnAltaSocio.UseVisualStyleBackColor = false;
@@ -74,20 +74,21 @@
             // lblUsuario
             // 
             lblUsuario.AutoSize = true;
-            lblUsuario.Location = new Point(374, 143);
+            lblUsuario.Font = new Font("Segoe UI", 12F);
+            lblUsuario.Location = new Point(410, 153);
             lblUsuario.Name = "lblUsuario";
-            lblUsuario.Size = new Size(87, 20);
+            lblUsuario.Size = new Size(109, 28);
             lblUsuario.TabIndex = 3;
-            lblUsuario.Text = "Bienvenido!";
+            lblUsuario.Text = "Bienvenido";
             lblUsuario.Click += lblUsuario_Click;
             // 
             // btnIngresoEgreso
             // 
             btnIngresoEgreso.BackColor = Color.Black;
             btnIngresoEgreso.ForeColor = Color.White;
-            btnIngresoEgreso.Location = new Point(495, 235);
+            btnIngresoEgreso.Location = new Point(600, 270);
             btnIngresoEgreso.Name = "btnIngresoEgreso";
-            btnIngresoEgreso.Size = new Size(241, 29);
+            btnIngresoEgreso.Size = new Size(241, 52);
             btnIngresoEgreso.TabIndex = 4;
             btnIngresoEgreso.Text = "Ingreso/Egreso";
             btnIngresoEgreso.UseVisualStyleBackColor = false;
@@ -97,9 +98,9 @@
             // 
             btnEmitirCarnet.BackColor = Color.Black;
             btnEmitirCarnet.ForeColor = Color.White;
-            btnEmitirCarnet.Location = new Point(495, 283);
+            btnEmitirCarnet.Location = new Point(600, 328);
             btnEmitirCarnet.Name = "btnEmitirCarnet";
-            btnEmitirCarnet.Size = new Size(241, 29);
+            btnEmitirCarnet.Size = new Size(241, 52);
             btnEmitirCarnet.TabIndex = 5;
             btnEmitirCarnet.Text = "Emitir carnet";
             btnEmitirCarnet.UseVisualStyleBackColor = false;
@@ -108,9 +109,9 @@
             // 
             btnVencimientos.BackColor = Color.Black;
             btnVencimientos.ForeColor = Color.White;
-            btnVencimientos.Location = new Point(495, 327);
+            btnVencimientos.Location = new Point(600, 386);
             btnVencimientos.Name = "btnVencimientos";
-            btnVencimientos.Size = new Size(241, 29);
+            btnVencimientos.Size = new Size(241, 52);
             btnVencimientos.TabIndex = 6;
             btnVencimientos.Text = "Vencimientos";
             btnVencimientos.UseVisualStyleBackColor = false;
@@ -119,9 +120,9 @@
             // 
             btnSalir.BackColor = Color.Black;
             btnSalir.ForeColor = Color.White;
-            btnSalir.Location = new Point(495, 374);
+            btnSalir.Location = new Point(600, 444);
             btnSalir.Name = "btnSalir";
-            btnSalir.Size = new Size(241, 29);
+            btnSalir.Size = new Size(241, 52);
             btnSalir.TabIndex = 7;
             btnSalir.Text = "Salir";
             btnSalir.UseVisualStyleBackColor = false;
@@ -131,7 +132,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(941, 551);
             Controls.Add(btnSalir);
             Controls.Add(btnVencimientos);
             Controls.Add(btnEmitirCarnet);
@@ -144,6 +145,7 @@
             Name = "Dashboard";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "IFTS 29 - Dashboard";
+            FormClosing += Dashboard_FormClosing;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();

@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace clubdeportivo.repository
+namespace clubdeportivo.config
 {
     internal class DBConection
     {
