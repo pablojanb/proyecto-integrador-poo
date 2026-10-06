@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Microsoft.Extensions.Configuration;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,20 +8,26 @@ namespace clubdeportivo.config
 {
     internal class DBConection
     {
-        private string baseDatos;
-        private string servidor;
-        private string puerto;
-        private string usuario;
-        private string clave;
+
         private static DBConection? con = null;
+        private static readonly IConfiguration Configuration;
+
         private DBConection()
         {
-            this.baseDatos = "proyectopooifts";
-            this.servidor = "localhost";
-            this.puerto = "3306";
-            this.usuario = "root";
-            this.clave = "root";
+
         }
+        static DBConection()
+        {
+            Configuration = new ConfigurationBuilder()
+                .SetBasePath(AppContext.BaseDirectory)
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .Build();
+        }
+
+        public static string ConnectionString =>
+            Configuration.GetConnectionString("MySql")
+            ?? throw new Exception("No se encontró la conexión MySql.");
+
      
         public MySqlConnection CrearConcexion()
         {
@@ -29,15 +36,11 @@ namespace clubdeportivo.config
          
             try
             {
-                conection.ConnectionString = "datasource=" + this.servidor +
-                ";port=" + this.puerto +
-                ";username=" + this.usuario +
-                ";password=" + this.clave +
-                ";Database=" + this.baseDatos;
+                conection.ConnectionString = ConnectionString; ;
             }
             catch (Exception ex)
             {
-                conection = null;
+                conection.Dispose();
                 throw;
             }
             return conection;
@@ -53,4 +56,29 @@ namespace clubdeportivo.config
         }
     }
 }
+/*
+using Microsoft.Extensions.Configuration;
+using MySql.Data.MySqlClient;
 
+namespace clubdeportivo.config
+{
+    internal static class DBConection
+    {
+        private static readonly IConfiguration Configuration =
+            new ConfigurationBuilder()
+                .SetBasePath(AppContext.BaseDirectory)
+                .AddJsonFile("appsettings.json", optional: false)
+                .Build();
+
+        public static MySqlConnection CrearConexion()
+        {
+            string connectionString =
+                Configuration.GetConnectionString("MySql")
+                ?? throw new Exception("No se encontró la conexión MySql.");
+
+            return new MySqlConnection(connectionString);
+        }
+    }
+}
+
+*/
