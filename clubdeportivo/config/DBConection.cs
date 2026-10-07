@@ -15,24 +15,8 @@ namespace clubdeportivo.config
 
         public static MySqlConnection CrearConexion()
         {
-            var server = Configuration.GetConnectionString("server");
-            var port = Configuration.GetConnectionString("port");
-            var database = Configuration.GetConnectionString("database");
-            var user = Configuration.GetConnectionString("user");
-            var password =  Configuration.GetConnectionString("password");
-            var connectionString = $"Server={server};Port={port};Database={database};User Id={user};Password={password};";
+            var connectionString = Configuration.GetConnectionString("mysql");
             return new MySqlConnection(connectionString);
-        }
-
-        public static string DBName
-        {
-            get
-            {
-                string connectionString = Configuration.GetConnectionString("database")
-                    ?? throw new Exception("No se encontró ConnectionStrings:database.");
-
-                return connectionString;
-            }
         }
     }
 }
