@@ -66,19 +66,28 @@ namespace clubdeportivo
             string password = txtPassword.Text;
             
             empleado = empleadoAdministrativoService.obtenerEmpleadoPorUsername(username);
-            Boolean passwordCorrecto = password == empleado.Password;
-            if (passwordCorrecto)
+
+            if (empleado != null)
             {
-                inicializarSesion();
-                Dashboard dashboard = new Dashboard(this);
-                dashboard.Show();
-                this.Hide();
-            }
-            else
-            {
-                CredencialesIncorrectas popUp = new CredencialesIncorrectas();
-                popUp.ShowDialog();
-            }
+                Boolean passwordCorrecto = password == empleado.Password;
+                if (passwordCorrecto)
+                {
+                    inicializarSesion();
+                    Dashboard dashboard = new Dashboard(this);
+                    dashboard.Show();
+                    this.Hide();
+                }
+                else
+                {
+                    CredencialesIncorrectas popUp = new CredencialesIncorrectas();
+                    popUp.ShowDialog();
+                }
+            } else
+                {
+                    CredencialesIncorrectas popUp = new CredencialesIncorrectas();
+                    popUp.ShowDialog();
+                }
+            
             txtUsername.Text = "Ingrese su usuario";
             txtPassword.Text = "Ingrese su contraseña";
             txtPassword.UseSystemPasswordChar = false;
