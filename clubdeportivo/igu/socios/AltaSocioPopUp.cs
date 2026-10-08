@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-
+﻿
 namespace clubdeportivo.igu
 {
-    public partial class AltaSocioPopUp : Form
+    public partial class AltaSocioPopUp : FormBase
     {
         public AltaSocioPopUp(string nombre, string apellido, string dni, long numAfiliado)
         {

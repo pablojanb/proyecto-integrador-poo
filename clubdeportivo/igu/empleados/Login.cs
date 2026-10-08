@@ -2,12 +2,6 @@ using clubdeportivo.config;
 using clubdeportivo.igu;
 using clubdeportivo.model;
 using clubdeportivo.service;
-using Microsoft.Extensions.Configuration;
-using MySql.Data.MySqlClient;
-using System.Data;
-using System.Data.Common;
-using System.Diagnostics;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace clubdeportivo
 {

@@ -1,17 +1,7 @@
-﻿using clubdeportivo.model;
-using clubdeportivo.service;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-
+﻿
 namespace clubdeportivo.igu
 {
-    public partial class ConfirmarAltaSocio : Form
+    public partial class ConfirmarAltaSocio : FormBase
     {
         public ConfirmarAltaSocio()
         {

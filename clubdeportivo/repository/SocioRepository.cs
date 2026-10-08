@@ -1,12 +1,7 @@
 ﻿using clubdeportivo.config;
 using clubdeportivo.model;
 using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Diagnostics;
-using System.Text;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace clubdeportivo.repository
 {

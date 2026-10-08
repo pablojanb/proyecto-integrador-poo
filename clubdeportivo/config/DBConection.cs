@@ -1,7 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
 using MySql.Data.MySqlClient;
-using System.Data;
-using System.Xml.Linq;
 
 namespace clubdeportivo.config
 {
