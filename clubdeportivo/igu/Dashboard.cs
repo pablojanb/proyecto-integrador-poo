@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace clubdeportivo.igu
 {
-    public partial class Dashboard : Form
+    public partial class Dashboard : FormBase
     {
         private Login login;
         private Session session;

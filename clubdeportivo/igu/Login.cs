@@ -11,7 +11,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace clubdeportivo
 {
-    public partial class Login : Form
+    public partial class Login : FormBase
     {
         private PersonaService personaService;
         private EmpleadoAdministrativo empleado;

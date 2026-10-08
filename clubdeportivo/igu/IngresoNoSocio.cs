@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace clubdeportivo.igu
 {
-    public partial class IngresoNoSocio : Form
+    public partial class IngresoNoSocio : FormBase
     {
         public IngresoNoSocio()
         {

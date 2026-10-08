@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace clubdeportivo.igu
 {
-    public partial class ConfirmarIngreso : Form
+    public partial class ConfirmarIngreso : FormBase
     {
         public ConfirmarIngreso()
         {

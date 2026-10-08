@@ -8,16 +8,15 @@ using System.Windows.Forms;
 
 namespace clubdeportivo.igu
 {
-    public partial class SinIngreso : FormBase
+    public partial class FormBase : Form
     {
-        public SinIngreso()
+        public FormBase()
         {
             InitializeComponent();
-        }
-
-        private void lblConfirmacion_Click(object sender, EventArgs e)
-        {
-
+            this.BackColor = Color.White;
+            this.Icon = new Icon(
+                new MemoryStream(Properties.Resources.ifts_icon)
+            );
         }
     }
 }

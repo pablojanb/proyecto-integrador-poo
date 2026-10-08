@@ -12,7 +12,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace clubdeportivo.igu
 {
-    public partial class IngresoSocio : Form
+    public partial class IngresoSocio : FormBase
     {
         private SocioService socioService;
         private PersonaService personaService;

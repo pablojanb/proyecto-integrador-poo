@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace clubdeportivo.igu
 {
-    public partial class CredencialesIncorrectas : Form
+    public partial class CredencialesIncorrectas : FormBase
     {
         public CredencialesIncorrectas()
         {

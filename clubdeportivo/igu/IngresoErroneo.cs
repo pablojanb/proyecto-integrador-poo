@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace clubdeportivo.igu
 {
-    public partial class IngresoErroneo : Form
+    public partial class IngresoErroneo : FormBase
     {
         public IngresoErroneo()
         {
