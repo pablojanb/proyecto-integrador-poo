@@ -64,7 +64,7 @@ namespace clubdeportivo
             if (passwordCorrecto)
             {
                 inicializarSesion();
-                Dashboard dashboard = new Dashboard(this);
+                Dashboard dashboard = new Dashboard();
                 dashboard.Show();
                 this.Hide();
             }

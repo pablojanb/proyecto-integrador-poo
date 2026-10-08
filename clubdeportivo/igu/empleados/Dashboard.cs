@@ -6,11 +6,9 @@ namespace clubdeportivo.igu
 {
     public partial class Dashboard : FormBase
     {
-        private Login login;
         private Session session;
-        public Dashboard(Login login)
+        public Dashboard()
         {
-            this.login = login;
             session = Session.getInstance();
             InitializeComponent();
             lblUsuario.Text = $"Bienvenido {session.Nombre}";
@@ -34,17 +32,17 @@ namespace clubdeportivo.igu
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
-            this.Close();
-            login.Show();
+            session.CerrarSesion();
         }
 
         private void Dashboard_FormClosing(object sender, FormClosingEventArgs e)
         {
-            login.Show();
+            
         }
 
         private void btnAltaSocio_Click(object sender, EventArgs e)
         {
+            //TODO mover lógica al form de alta cuando este listo
             Persona persona = new Persona();
             persona.Nombre = "Julieta";
             persona.Apellido = "Sosa";
