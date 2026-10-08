@@ -61,22 +61,32 @@ namespace clubdeportivo.Properties {
         }
         
         /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Byte[].
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static byte[] ifts_icon {
+        internal static System.Drawing.Bitmap bg_dashboard {
             get {
-                object obj = ResourceManager.GetObject("ifts_icon", resourceCulture);
-                return ((byte[])(obj));
+                object obj = ResourceManager.GetObject("bg_dashboard", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap wallpaper {
+        internal static System.Drawing.Bitmap bg_login {
             get {
-                object obj = ResourceManager.GetObject("wallpaper", resourceCulture);
+                object obj = ResourceManager.GetObject("bg_login", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
+        internal static byte[] ifts_icon {
+            get {
+                object obj = ResourceManager.GetObject("ifts_icon", resourceCulture);
+                return ((byte[])(obj));
             }
         }
     }

@@ -37,7 +37,7 @@
             // 
             lblTimer.AutoSize = true;
             lblTimer.Font = new Font("Segoe UI", 14F);
-            lblTimer.Location = new Point(187, 109);
+            lblTimer.Location = new Point(198, 106);
             lblTimer.Name = "lblTimer";
             lblTimer.Size = new Size(101, 32);
             lblTimer.TabIndex = 0;

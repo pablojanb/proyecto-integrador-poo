@@ -30,19 +30,20 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dashboard));
             lblTitle = new Label();
-            pictureBox1 = new PictureBox();
+            imgFondo = new PictureBox();
             btnAltaSocio = new Button();
             lblUsuario = new Label();
             btnIngresoEgreso = new Button();
             btnEmitirCarnet = new Button();
             btnVencimientos = new Button();
             btnSalir = new Button();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)imgFondo).BeginInit();
             SuspendLayout();
             // 
             // lblTitle
             // 
             lblTitle.AutoSize = true;
+            lblTitle.BackColor = Color.Transparent;
             lblTitle.Font = new Font("Segoe UI", 30F);
             lblTitle.Location = new Point(227, 73);
             lblTitle.Name = "lblTitle";
@@ -51,14 +52,14 @@
             lblTitle.Text = "Club deportivo del 29";
             lblTitle.Click += label1_Click;
             // 
-            // pictureBox1
+            // imgFondo
             // 
-            pictureBox1.Image = Properties.Resources.wallpaper;
-            pictureBox1.Location = new Point(112, 245);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(292, 193);
-            pictureBox1.TabIndex = 1;
-            pictureBox1.TabStop = false;
+            imgFondo.Image = Properties.Resources.bg_dashboard;
+            imgFondo.Location = new Point(-2, -1);
+            imgFondo.Name = "imgFondo";
+            imgFondo.Size = new Size(943, 554);
+            imgFondo.TabIndex = 1;
+            imgFondo.TabStop = false;
             // 
             // btnAltaSocio
             // 
@@ -75,10 +76,10 @@
             // lblUsuario
             // 
             lblUsuario.AutoSize = true;
-            lblUsuario.Font = new Font("Segoe UI", 12F);
-            lblUsuario.Location = new Point(410, 153);
+            lblUsuario.Font = new Font("Segoe UI", 20F);
+            lblUsuario.Location = new Point(319, 150);
             lblUsuario.Name = "lblUsuario";
-            lblUsuario.Size = new Size(109, 28);
+            lblUsuario.Size = new Size(185, 46);
             lblUsuario.TabIndex = 3;
             lblUsuario.Text = "Bienvenido";
             lblUsuario.Click += lblUsuario_Click;
@@ -140,14 +141,15 @@
             Controls.Add(btnIngresoEgreso);
             Controls.Add(lblUsuario);
             Controls.Add(btnAltaSocio);
-            Controls.Add(pictureBox1);
             Controls.Add(lblTitle);
+            Controls.Add(imgFondo);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Dashboard";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "IFTS 29 - Dashboard";
             FormClosing += Dashboard_FormClosing;
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            FormClosed += Dashboard_FormClosed;
+            ((System.ComponentModel.ISupportInitialize)imgFondo).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -155,7 +157,7 @@
         #endregion
 
         private Label lblTitle;
-        private PictureBox pictureBox1;
+        private PictureBox imgFondo;
         private Button btnAltaSocio;
         private Label lblUsuario;
         private Button btnIngresoEgreso;

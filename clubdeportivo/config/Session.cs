@@ -9,7 +9,7 @@ namespace clubdeportivo.config
         private string nombre;
 
         private Point ultimaPosicion;
-        private int segundosSinMovimiento = 0;
+        private int minutosSinMovimiento = 0;
         private System.Windows.Forms.Timer timerMouse;
 
         private static Session? session = null;
@@ -41,17 +41,18 @@ namespace clubdeportivo.config
 
             if (posicionActual == ultimaPosicion)
             {
-                segundosSinMovimiento++;
+                minutosSinMovimiento++;
 
-                if (segundosSinMovimiento >= 3)
+                if (minutosSinMovimiento >= 4)
                 {
                     timerMouse.Stop();
+                    minutosSinMovimiento = 0;
                     EventoSinMovimiento();
                 }
             }
             else
             {
-                segundosSinMovimiento = 0;
+                minutosSinMovimiento = 0;
                 ultimaPosicion = posicionActual;
             }
         }
@@ -60,11 +61,12 @@ namespace clubdeportivo.config
         {
             using (SesionTimer timer = new SesionTimer())
             {
-                if (timer.ShowDialog() != DialogResult.OK)
+                DialogResult dialogResult = timer.ShowDialog();
+                if (dialogResult == DialogResult.Abort)
                 {
                     CerrarSesion();
                 }
-                else
+                else if (dialogResult == DialogResult.OK || dialogResult == DialogResult.Cancel)
                 {
                     timerMouse.Start();
                 }
@@ -73,8 +75,10 @@ namespace clubdeportivo.config
 
         public void CerrarSesion()
         {
+            timerMouse.Stop();
             username = null;
             nombre = null;
+            session = null;
 
             foreach (Form form in Application.OpenForms.Cast<Form>().ToList())
             {

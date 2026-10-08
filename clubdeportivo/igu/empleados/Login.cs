@@ -17,6 +17,11 @@ namespace clubdeportivo
             empleadoAdministrativoService = new EmpleadoAdministrativoService();
             InicializarDatos.InicializarDB();
             InitializeComponent();
+            lblTitulo.Parent = imgFondo;
+            lblLogin.Parent = imgFondo;
+            lblLogin.BackColor = Color.Transparent;
+            lblLogin.ForeColor = Color.White;
+            lblTitulo.ForeColor = Color.White;
         }
 
         private void Form1_Load(object sender, EventArgs e)

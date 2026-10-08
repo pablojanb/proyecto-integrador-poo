@@ -11,6 +11,9 @@ namespace clubdeportivo.igu
         {
             session = Session.getInstance();
             InitializeComponent();
+            lblTitle.Parent = imgFondo;
+            lblUsuario.Parent = imgFondo;
+            lblUsuario.BackColor = Color.Transparent;
             lblUsuario.Text = $"Bienvenido {session.Nombre}";
         }
 
@@ -37,7 +40,7 @@ namespace clubdeportivo.igu
 
         private void Dashboard_FormClosing(object sender, FormClosingEventArgs e)
         {
-            
+
         }
 
         private void btnAltaSocio_Click(object sender, EventArgs e)
@@ -68,8 +71,13 @@ namespace clubdeportivo.igu
                         pop.ShowDialog();
                     }
                 }
-                
+
             }
+        }
+
+        private void Dashboard_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            session.CerrarSesion();
         }
     }
 }

@@ -34,6 +34,8 @@
             lblTitulo = new Label();
             btnAceptar = new Button();
             lblLogin = new Label();
+            imgFondo = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)imgFondo).BeginInit();
             SuspendLayout();
             // 
             // txtUsername
@@ -64,6 +66,7 @@
             // lblTitulo
             // 
             lblTitulo.AutoSize = true;
+            lblTitulo.BackColor = Color.Transparent;
             lblTitulo.Font = new Font("Segoe UI", 36F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblTitulo.Location = new Point(180, 76);
             lblTitulo.Name = "lblTitulo";
@@ -94,6 +97,15 @@
             lblLogin.TabIndex = 15;
             lblLogin.Text = "LOGIN";
             // 
+            // imgFondo
+            // 
+            imgFondo.Image = Properties.Resources.bg_login;
+            imgFondo.Location = new Point(-2, -2);
+            imgFondo.Name = "imgFondo";
+            imgFondo.Size = new Size(918, 602);
+            imgFondo.TabIndex = 16;
+            imgFondo.TabStop = false;
+            // 
             // Login
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -104,12 +116,14 @@
             Controls.Add(lblTitulo);
             Controls.Add(txtPassword);
             Controls.Add(txtUsername);
+            Controls.Add(imgFondo);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(3, 4, 3, 4);
             Name = "Login";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "IFTS  - 29 Club deportivo";
             Load += Form1_Load;
+            ((System.ComponentModel.ISupportInitialize)imgFondo).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -121,5 +135,6 @@
         private Label lblTitulo;
         private Button btnAceptar;
         private Label lblLogin;
+        private PictureBox imgFondo;
     }
 }

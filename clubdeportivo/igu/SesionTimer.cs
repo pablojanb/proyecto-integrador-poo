@@ -1,9 +1,9 @@
 ﻿
 namespace clubdeportivo.igu
 {
-    public partial class SesionTimer : Form
+    public partial class SesionTimer : FormBase
     {
-        private int segundosRestantes = 15;
+        private int segundosRestantes = 3;
 
         private System.Windows.Forms.Timer timerCuenta;
         public SesionTimer()
@@ -26,6 +26,7 @@ namespace clubdeportivo.igu
             if (segundosRestantes <= 0)
             {
                 timerCuenta.Stop();
+                this.DialogResult = DialogResult.Abort;
                 this.Close();
             }
         }
