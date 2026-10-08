@@ -29,5 +29,10 @@ namespace clubdeportivo.service
         {
             return repository.obtenerPersonaPorNroLegajo(nroLegajo);
         }
+
+        public Persona crearPersona(Persona persona)
+        {
+            return repository.crearPersona(persona);
+        }
     }
 }

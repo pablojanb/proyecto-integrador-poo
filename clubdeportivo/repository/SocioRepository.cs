@@ -59,7 +59,48 @@ namespace clubdeportivo.repository
             catch (MySqlException ex)
             {
                 Console.WriteLine($"MySQL Error {ex.Number}: {ex.Message}");
-                throw ex;
+                throw;
+            }
+            finally
+            {
+                if (dbConnection != null && dbConnection.State == ConnectionState.Open)
+                {
+                    dbConnection.Close();
+                }
+            }
+        }
+
+        public Socio crearSocio(Socio socio)
+        {
+            MySqlConnection dbConnection = null;
+            try
+            {
+                dbConnection = DBConection.CrearConexion();
+
+                var query = "INSERT INTO socios (id, fecha_alta, apto_fisico) VALUES " +
+                            "(@id, @fecha_alta, @apto_fisico);";
+
+                MySqlCommand comando = new MySqlCommand(query, dbConnection);
+
+                var fechaAlta = socio.FechaAlta.ToDateTime(TimeOnly.MinValue);
+
+                comando.Parameters.AddWithValue("@id", socio.Id);
+                comando.Parameters.Add("@fecha_alta", MySqlDbType.Date).Value = fechaAlta;
+                comando.Parameters.AddWithValue("@apto_fisico", socio.AptoFisico);
+
+                dbConnection.Open();
+
+                comando.ExecuteNonQuery();
+
+
+                socio.NumAfiliado = comando.LastInsertedId;
+
+                return socio;
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine($"MySQL Error {ex.Number}: {ex.Message}");
+                throw;
             }
             finally
             {

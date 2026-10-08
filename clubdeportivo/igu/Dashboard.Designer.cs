@@ -70,6 +70,7 @@
             btnAltaSocio.TabIndex = 2;
             btnAltaSocio.Text = "Alta socio";
             btnAltaSocio.UseVisualStyleBackColor = false;
+            btnAltaSocio.Click += btnAltaSocio_Click;
             // 
             // lblUsuario
             // 
