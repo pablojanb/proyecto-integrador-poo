@@ -1,4 +1,6 @@
 ﻿using clubdeportivo.config;
+using clubdeportivo.model;
+using clubdeportivo.service;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -47,6 +49,37 @@ namespace clubdeportivo.igu
         private void Dashboard_FormClosing(object sender, FormClosingEventArgs e)
         {
             login.Show();
+        }
+
+        private void btnAltaSocio_Click(object sender, EventArgs e)
+        {
+            Persona persona = new Persona();
+            persona.Nombre = "Julieta";
+            persona.Apellido = "Sosa";
+            persona.Dni = "43567334";
+            persona.Direccion = "Av. Maipu 343";
+            persona.Telefono = "1154667433";
+            persona.Email = "jsosa63@gmail.com";
+            using (ConfirmarAltaSocio popUpConfirmar = new ConfirmarAltaSocio())
+            {
+                if (popUpConfirmar.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        SocioService socioService = new SocioService();
+                        Socio socio = socioService.crearSocio(persona);
+                        AltaSocioPopUp popUpAltaDatos = new AltaSocioPopUp(persona.Nombre, persona.Apellido,
+                            persona.Dni, socio.NumAfiliado);
+                        popUpAltaDatos.ShowDialog();
+                    }
+                    catch (Exception ex)
+                    {
+                        SocioYaExistentePopUp pop = new SocioYaExistentePopUp();
+                        pop.ShowDialog();
+                    }
+                }
+                
+            }
         }
     }
 }
