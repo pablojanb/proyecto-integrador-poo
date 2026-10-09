@@ -43,6 +43,46 @@ CREATE TABLE IF NOT EXISTS socios(
 INSERT INTO socios (id, fecha_alta, apto_fisico)
 SELECT 2, '2026-03-04', TRUE WHERE NOT EXISTS (SELECT 1 FROM socios WHERE id = 2);
 
+CREATE TABLE IF NOT EXISTS membresias (
+	id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    id_socio BIGINT,
+    monto DECIMAL,
+    periodo DATE,
+    fecha_vencimiento DATE,
+	FOREIGN KEY (id_socio) REFERENCES socios(id)
+);
+
+INSERT INTO membresias (id_socio, monto, periodo, fecha_vencimiento)
+SELECT 2, 30000.00, '2026-10-01', '2026-10-5' WHERE NOT EXISTS (SELECT 1 FROM membresias WHERE id_socio = 2);
+
+CREATE TABLE IF NOT EXISTS medios_pago (
+	id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    descripcion VARCHAR(40)
+);
+
+INSERT INTO medios_pago (id, descripcion)
+SELECT 1, "Efectivo" WHERE NOT EXISTS (SELECT 1 FROM medios_pago WHERE id = 1);
+
+INSERT INTO medios_pago (id, descripcion)
+SELECT 2, "Crédito" WHERE NOT EXISTS (SELECT 1 FROM medios_pago WHERE id = 2);
+
+CREATE TABLE IF NOT EXISTS pagos (
+	id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    id_membresia BIGINT,
+	id_medio_pago BIGINT,
+    fecha_hora DATETIME,
+    monto DECIMAL,
+    detalle VARCHAR(255),
+	FOREIGN KEY (id_membresia) REFERENCES membresias(id),
+    FOREIGN KEY (id_medio_pago) REFERENCES medios_pago(id)
+);
+
+INSERT INTO pagos (id_membresia, id_medio_pago, fecha_hora, monto, detalle)
+SELECT 1, 2, '2026-10-01 10:30:00', 20000.00, 'Pago mensual de membresía' WHERE NOT EXISTS (SELECT 1 FROM pagos WHERE id = 1);
+
+INSERT INTO pagos (id_membresia, id_medio_pago, fecha_hora, monto, detalle)
+SELECT 1, 1, '2026-10-01 10:30:00', 5000.00, 'Pago mensual de membresía' WHERE NOT EXISTS (SELECT 1 FROM pagos WHERE id = 2);
+
 DROP PROCEDURE IF EXISTS login;
 CREATE PROCEDURE login(in p_username varchar(50), in p_password varchar(200))
 begin
