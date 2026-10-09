@@ -105,5 +105,58 @@ namespace clubdeportivo.repository
                 }
             }
         }
+
+        public List<Socio> obtenerTodos()
+        {
+            List<Socio> socios = new();
+            MySqlConnection dbConnection = null;
+            try
+            {
+                dbConnection = DBConection.CrearConexion();
+                var query = "SELECT p.id, nombre, apellido, dni, telefono, " +
+                    "num_afiliado, fecha_alta, fecha_baja, apto_fisico " +
+                    "FROM personas p " +
+                    "JOIN socios s ON p.id = s.id";
+                MySqlCommand comando = new MySqlCommand(query, dbConnection);
+
+                dbConnection.Open();
+
+                using (MySqlDataReader respuesta = comando.ExecuteReader())
+                {
+                    while (respuesta.Read())
+                    {
+                        Socio socio = new Socio();
+                        socio.Id = respuesta.GetInt64("id");
+                        socio.Nombre = respuesta.GetString("nombre");
+                        socio.Apellido = respuesta.GetString("apellido");
+                        socio.Dni = respuesta.GetString("dni");
+                        socio.Telefono = respuesta.GetString("telefono");
+                        socio.NumAfiliado = respuesta.GetInt64("num_afiliado");
+                        socio.AptoFisico = respuesta.GetBoolean("apto_fisico");
+                        socio.FechaAlta = DateOnly.FromDateTime(respuesta.GetDateTime("fecha_alta"));
+                        if (!respuesta.IsDBNull(respuesta.GetOrdinal("fecha_baja")))
+                        {
+                            socio.FechaBaja = DateOnly.FromDateTime(
+                                respuesta.GetDateTime("fecha_baja")
+                            );
+                        }
+                        socios.Add(socio);
+                    }
+                    return socios;
+                }
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine($"MySQL Error {ex.Number}: {ex.Message}");
+                throw;
+            }
+            finally
+            {
+                if (dbConnection != null && dbConnection.State == ConnectionState.Open)
+                {
+                    dbConnection.Close();
+                }
+            }
+        }
     }
 }

@@ -22,6 +22,9 @@ namespace clubdeportivo
             lblLogin.BackColor = Color.Transparent;
             lblLogin.ForeColor = Color.White;
             lblTitulo.ForeColor = Color.White;
+            btnAceptar.Enabled = false;
+            btnAceptar.BackColor = Color.DarkGray;
+            btnAceptar.ForeColor = Color.Gray;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -32,10 +35,12 @@ namespace clubdeportivo
 
         private void UserText_TextChanged(object sender, EventArgs e)
         {
+            ValidarCamposForm();
         }
 
         private void PassText_TextChanged(object sender, EventArgs e)
         {
+            ValidarCamposForm();
             txtPassword.UseSystemPasswordChar = true;
 
         }
@@ -92,7 +97,10 @@ namespace clubdeportivo
         }
         private void txtUsername_Click(object sender, EventArgs e)
         {
-            txtUsername.Text = "";
+            if (txtUsername.Text == "Ingrese su usuario")
+            {
+                txtUsername.Text = "";
+            }
         }
 
         private void txtPassword_Click(object sender, EventArgs e)
@@ -114,6 +122,23 @@ namespace clubdeportivo
             {
                 txtPassword.Text = "Ingrese su contraseña";
                 txtPassword.UseSystemPasswordChar = false;
+            }
+        }
+
+        private void ValidarCamposForm()
+        {
+            if (txtUsername.Text != "Ingrese su usuario" && txtPassword.Text != "Ingrese su contraseña"
+                && txtUsername.Text.Length > 0 && txtPassword.Text.Length > 0)
+            {
+                btnAceptar.Enabled = true;
+                btnAceptar.BackColor = Color.Black;
+                btnAceptar.ForeColor = Color.White;
+            }
+            else
+            {
+                btnAceptar.Enabled = false;
+                btnAceptar.BackColor = Color.DarkGray;
+                btnAceptar.ForeColor = Color.Gray;
             }
         }
     }

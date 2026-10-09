@@ -37,6 +37,9 @@
     <Compile Update="igu\ingresos\SinIngreso.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="igu\socios\GrillaSocios.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="igu\socios\SocioYaExistentePopUp.cs">
       <SubType>Form</SubType>
     </Compile>

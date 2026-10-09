@@ -6,7 +6,7 @@ namespace clubdeportivo.model
         private long id;
         private long numAfiliado;
         private DateOnly fechaAlta;
-        private DateOnly fechaBaja;
+        private DateOnly? fechaBaja;
         private Boolean aptoFisico;
 
         public Socio() {}
@@ -21,7 +21,7 @@ namespace clubdeportivo.model
         public long Id { get => id; set => id = value; }
         public long NumAfiliado { get => numAfiliado; set => numAfiliado = value; }
         public DateOnly FechaAlta { get => fechaAlta; set => fechaAlta = value; }
-        public DateOnly FechaBaja { get => fechaBaja; set => fechaBaja = value; }
+        public DateOnly? FechaBaja { get => fechaBaja; set => fechaBaja = value; }
         public bool AptoFisico { get => aptoFisico; set => aptoFisico = value; }
     }
 }

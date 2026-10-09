@@ -31,7 +31,7 @@
             btnCancelar = new Button();
             btnAceptar = new Button();
             lblTitle = new Label();
-            btnNoSocio = new Button();
+            btnPrimerIngreo = new Button();
             txtDni = new TextBox();
             cmbIngreso = new ComboBox();
             cmbDni = new ComboBox();
@@ -72,17 +72,17 @@
             lblTitle.Text = "Nuevo registro Ingreso/Egreso";
             lblTitle.Click += lblTitle_Click;
             // 
-            // btnNoSocio
+            // btnPrimerIngreo
             // 
-            btnNoSocio.BackColor = Color.Black;
-            btnNoSocio.ForeColor = Color.White;
-            btnNoSocio.Location = new Point(394, 287);
-            btnNoSocio.Name = "btnNoSocio";
-            btnNoSocio.Size = new Size(164, 41);
-            btnNoSocio.TabIndex = 8;
-            btnNoSocio.Text = "No Socio";
-            btnNoSocio.UseVisualStyleBackColor = false;
-            btnNoSocio.Click += btnNoSocio_Click;
+            btnPrimerIngreo.BackColor = Color.Black;
+            btnPrimerIngreo.ForeColor = Color.White;
+            btnPrimerIngreo.Location = new Point(394, 287);
+            btnPrimerIngreo.Name = "btnPrimerIngreo";
+            btnPrimerIngreo.Size = new Size(164, 41);
+            btnPrimerIngreo.TabIndex = 8;
+            btnPrimerIngreo.Text = "Primer ingreso";
+            btnPrimerIngreo.UseVisualStyleBackColor = false;
+            btnPrimerIngreo.Click += btnNoSocio_Click;
             // 
             // txtDni
             // 
@@ -126,7 +126,7 @@
             Controls.Add(cmbDni);
             Controls.Add(cmbIngreso);
             Controls.Add(txtDni);
-            Controls.Add(btnNoSocio);
+            Controls.Add(btnPrimerIngreo);
             Controls.Add(btnCancelar);
             Controls.Add(btnAceptar);
             Controls.Add(lblTitle);
@@ -142,7 +142,7 @@
         private Button btnCancelar;
         private Button btnAceptar;
         private Label lblTitle;
-        private Button btnNoSocio;
+        private Button btnPrimerIngreo;
         private TextBox txtDni;
         private ComboBox cmbIngreso;
         private ComboBox cmbDni;

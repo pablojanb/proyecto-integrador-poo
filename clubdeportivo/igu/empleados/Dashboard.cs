@@ -1,4 +1,5 @@
 ﻿using clubdeportivo.config;
+using clubdeportivo.igu.socios;
 using clubdeportivo.model;
 using clubdeportivo.service;
 
@@ -78,6 +79,12 @@ namespace clubdeportivo.igu
         private void Dashboard_FormClosed(object sender, FormClosedEventArgs e)
         {
             session.CerrarSesion();
+        }
+
+        private void btnVencimientos_Click(object sender, EventArgs e)
+        {
+            GrillaSocios grillaSocios = new GrillaSocios();
+            grillaSocios.ShowDialog();
         }
     }
 }

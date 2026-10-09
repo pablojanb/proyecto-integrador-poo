@@ -3,7 +3,7 @@ namespace clubdeportivo.igu
 {
     public partial class SesionTimer : FormBase
     {
-        private int segundosRestantes = 3;
+        private int segundosRestantes = 15;
 
         private System.Windows.Forms.Timer timerCuenta;
         public SesionTimer()

@@ -18,7 +18,7 @@ namespace clubdeportivo.config
             ultimaPosicion = Cursor.Position;
 
             timerMouse = new System.Windows.Forms.Timer();
-            timerMouse.Interval = 1000;
+            timerMouse.Interval = 60000;
             timerMouse.Tick += TimerMouse_Tick;
             timerMouse.Start();
         }
@@ -43,7 +43,7 @@ namespace clubdeportivo.config
             {
                 minutosSinMovimiento++;
 
-                if (minutosSinMovimiento >= 4)
+                if (minutosSinMovimiento >= 15)
                 {
                     timerMouse.Stop();
                     minutosSinMovimiento = 0;

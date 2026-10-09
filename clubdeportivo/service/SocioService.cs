@@ -27,5 +27,10 @@ namespace clubdeportivo.service
                 personaCreada.Dni, personaCreada.Direccion, personaCreada.Telefono, personaCreada.Email, true);
             return repository.crearSocio(socio);
         }
+
+        public List<Socio> obtenerTodos()
+        {
+            return repository.obtenerTodos();
+        }
     }
 }
