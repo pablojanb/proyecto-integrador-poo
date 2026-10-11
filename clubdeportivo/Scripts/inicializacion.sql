@@ -3,10 +3,10 @@ CREATE TABLE IF NOT EXISTS personas(
 	id BIGINT PRIMARY KEY AUTO_INCREMENT,
     nombre VARCHAR(50),
     apellido VARCHAR(50),
-    dni VARCHAR(50),
+    dni VARCHAR(50) UNIQUE,
     direccion VARCHAR(150),
     telefono VARCHAR(50),
-    email VARCHAR(50) UNIQUE
+    email VARCHAR(50)
 );
 
 INSERT INTO personas (id, nombre, apellido, dni, direccion, telefono, email)
