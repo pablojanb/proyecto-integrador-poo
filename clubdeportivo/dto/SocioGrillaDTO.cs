@@ -17,8 +17,19 @@ namespace clubdeportivo.dto
 
         Boolean aptoFisico;
 
+        decimal montoTotal;
+
+        decimal diferenciaTotalYPagos;
+
+        DateOnly fechaVencimiento;
+        public SocioGrillaDTO()
+        {
+
+        }
+
         public SocioGrillaDTO(long id, long numAfiliado, string nombreCompleto, string dni, 
-            DateOnly fechaAlta, DateOnly? fechaBaja, string telefono, Boolean apto)
+            DateOnly fechaAlta, DateOnly? fechaBaja, string telefono, Boolean apto, decimal montoTotal, 
+            decimal diferenciaTotalYPagos, DateOnly fechaVencimiento)
         {
             Id = id;
             NumAfiliado = numAfiliado;
@@ -28,6 +39,9 @@ namespace clubdeportivo.dto
             FechaBaja = fechaBaja;
             Telefono = telefono;
             AptoFisico = apto;
+            MontoTotal = montoTotal;
+            DiferenciaTotalYPagos = diferenciaTotalYPagos;
+            FechaVencimiento = fechaVencimiento;
         }
 
         [Browsable(false)]
@@ -48,5 +62,11 @@ namespace clubdeportivo.dto
 
         [DisplayName("APTO")]
         public bool AptoFisico { get => aptoFisico; set => aptoFisico = value; }
+        [DisplayName("Total")]
+        public decimal MontoTotal { get => montoTotal; set => montoTotal = value; }
+        [DisplayName("Faltante")]
+        public decimal DiferenciaTotalYPagos { get => diferenciaTotalYPagos; set => diferenciaTotalYPagos = value; }
+        [DisplayName("Vencimiento")]
+        public DateOnly FechaVencimiento { get => fechaVencimiento; set => fechaVencimiento = value; }
     }
 }

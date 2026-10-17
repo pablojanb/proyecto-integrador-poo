@@ -1,4 +1,5 @@
-﻿using clubdeportivo.config;
+﻿using AltaSocioPrueba;
+using clubdeportivo.config;
 using clubdeportivo.igu.socios;
 using clubdeportivo.model;
 using clubdeportivo.service;
@@ -46,34 +47,8 @@ namespace clubdeportivo.igu
 
         private void btnAltaSocio_Click(object sender, EventArgs e)
         {
-            //TODO mover lógica al form de alta cuando este listo
-            Persona persona = new Persona();
-            persona.Nombre = "Julieta";
-            persona.Apellido = "Sosa";
-            persona.Dni = "43567334";
-            persona.Direccion = "Av. Maipu 343";
-            persona.Telefono = "1154667433";
-            persona.Email = "jsosa63@gmail.com";
-            using (ConfirmarAltaSocio popUpConfirmar = new ConfirmarAltaSocio())
-            {
-                if (popUpConfirmar.ShowDialog() == DialogResult.OK)
-                {
-                    try
-                    {
-                        SocioService socioService = new SocioService();
-                        Socio socio = socioService.crearSocio(persona);
-                        AltaSocioPopUp popUpAltaDatos = new AltaSocioPopUp(persona.Nombre, persona.Apellido,
-                            persona.Dni, socio.NumAfiliado);
-                        popUpAltaDatos.ShowDialog();
-                    }
-                    catch (Exception ex)
-                    {
-                        SocioYaExistentePopUp pop = new SocioYaExistentePopUp();
-                        pop.ShowDialog();
-                    }
-                }
-
-            }
+            FormAltaSocio form = new FormAltaSocio();
+            form.Show();
         }
 
         private void Dashboard_FormClosed(object sender, FormClosedEventArgs e)

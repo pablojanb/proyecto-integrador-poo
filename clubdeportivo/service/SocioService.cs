@@ -1,4 +1,5 @@
 ﻿
+using clubdeportivo.dto;
 using clubdeportivo.model;
 using clubdeportivo.repository;
 
@@ -28,9 +29,9 @@ namespace clubdeportivo.service
             return repository.crearSocio(socio);
         }
 
-        public List<Socio> obtenerTodos()
+        public List<SocioGrillaDTO> obtenerTodosConVencimiento()
         {
-            return repository.obtenerTodos();
+            return repository.obtenerTodosConVencimiento();
         }
     }
 }

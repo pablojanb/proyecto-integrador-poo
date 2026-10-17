@@ -33,6 +33,7 @@
             btnFiltroTodos = new Button();
             btnFiltroVencidos = new Button();
             btnFiltroVenceHoy = new Button();
+            btnVolver = new Button();
             ((System.ComponentModel.ISupportInitialize)gridSocios).BeginInit();
             SuspendLayout();
             // 
@@ -42,8 +43,9 @@
             gridSocios.Location = new Point(21, 131);
             gridSocios.Name = "gridSocios";
             gridSocios.RowHeadersWidth = 51;
-            gridSocios.Size = new Size(932, 359);
+            gridSocios.Size = new Size(1063, 359);
             gridSocios.TabIndex = 0;
+            gridSocios.CellContentClick += gridSocios_CellContentClick;
             // 
             // lblTitulo
             // 
@@ -88,11 +90,24 @@
             btnFiltroVenceHoy.Text = "Vence hoy";
             btnFiltroVenceHoy.UseVisualStyleBackColor = false;
             // 
+            // btnVolver
+            // 
+            btnVolver.BackColor = Color.Black;
+            btnVolver.ForeColor = Color.White;
+            btnVolver.Location = new Point(450, 516);
+            btnVolver.Name = "btnVolver";
+            btnVolver.Size = new Size(206, 41);
+            btnVolver.TabIndex = 25;
+            btnVolver.Text = "Volver";
+            btnVolver.UseVisualStyleBackColor = false;
+            btnVolver.Click += btnVolver_Click;
+            // 
             // GrillaSocios
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(977, 517);
+            ClientSize = new Size(1119, 590);
+            Controls.Add(btnVolver);
             Controls.Add(btnFiltroVenceHoy);
             Controls.Add(btnFiltroVencidos);
             Controls.Add(btnFiltroTodos);
@@ -101,6 +116,7 @@
             Name = "GrillaSocios";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Listado de socios";
+            Load += GrillaSocios_Load;
             ((System.ComponentModel.ISupportInitialize)gridSocios).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -113,5 +129,6 @@
         private Button btnFiltroTodos;
         private Button btnFiltroVencidos;
         private Button btnFiltroVenceHoy;
+        private Button btnVolver;
     }
 }
