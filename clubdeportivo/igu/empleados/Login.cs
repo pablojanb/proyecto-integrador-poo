@@ -70,15 +70,22 @@ namespace clubdeportivo
             string password = txtPassword.Text;
             
             empleado = empleadoAdministrativoService.obtenerEmpleadoPorUsername(username);
-            Boolean passwordCorrecto = password == empleado.Password;
-            if (passwordCorrecto)
+            if (empleado != null)
             {
-                inicializarSesion();
-                Dashboard dashboard = new Dashboard();
-                dashboard.Show();
-                this.Hide();
-            }
-            else
+                Boolean passwordCorrecto = password == empleado.Password;
+                if (passwordCorrecto)
+                {
+                    inicializarSesion();
+                    Dashboard dashboard = new Dashboard();
+                    dashboard.Show();
+                    this.Hide();
+                }
+                else
+                {
+                    CredencialesIncorrectas popUp = new CredencialesIncorrectas();
+                    popUp.ShowDialog();
+                }
+            } else
             {
                 CredencialesIncorrectas popUp = new CredencialesIncorrectas();
                 popUp.ShowDialog();
