@@ -36,7 +36,7 @@
             // 
             btnAceptar.BackColor = Color.Black;
             btnAceptar.ForeColor = Color.White;
-            btnAceptar.Location = new Point(295, 272);
+            btnAceptar.Location = new Point(265, 147);
             btnAceptar.Name = "btnAceptar";
             btnAceptar.Size = new Size(206, 41);
             btnAceptar.TabIndex = 18;
@@ -47,7 +47,7 @@
             // 
             lblConfirmacion.AutoSize = true;
             lblConfirmacion.Font = new Font("Segoe UI", 16F);
-            lblConfirmacion.Location = new Point(72, 138);
+            lblConfirmacion.Location = new Point(21, 65);
             lblConfirmacion.Name = "lblConfirmacion";
             lblConfirmacion.Size = new Size(688, 37);
             lblConfirmacion.TabIndex = 17;
@@ -58,7 +58,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(754, 234);
             Controls.Add(lblConfirmacion);
             Controls.Add(btnAceptar);
             Name = "IngresoErroneo";

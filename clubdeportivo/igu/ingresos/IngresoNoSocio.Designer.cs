@@ -44,7 +44,7 @@
             txtDni.Location = new Point(118, 208);
             txtDni.Name = "txtDni";
             txtDni.Size = new Size(362, 27);
-            txtDni.TabIndex = 16;
+            txtDni.TabIndex = 5;
             txtDni.Text = "DNI";
             txtDni.Click += txtDni_Click;
             txtDni.Leave += txtDni_Leave;
@@ -56,7 +56,7 @@
             btnCancelar.Location = new Point(304, 394);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(164, 41);
-            btnCancelar.TabIndex = 14;
+            btnCancelar.TabIndex = 15;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = false;
             btnCancelar.Click += btnCancelar_Click_1;
@@ -87,7 +87,7 @@
             txtNombre.Location = new Point(118, 116);
             txtNombre.Name = "txtNombre";
             txtNombre.Size = new Size(362, 27);
-            txtNombre.TabIndex = 19;
+            txtNombre.TabIndex = 1;
             txtNombre.Text = "Nombre";
             txtNombre.Click += txtNombre_Click;
             txtNombre.TextChanged += textBox1_TextChanged;
@@ -98,7 +98,7 @@
             txtApellido.Location = new Point(118, 160);
             txtApellido.Name = "txtApellido";
             txtApellido.Size = new Size(362, 27);
-            txtApellido.TabIndex = 20;
+            txtApellido.TabIndex = 3;
             txtApellido.Text = "Apellido";
             txtApellido.Click += txtApellido_Click;
             txtApellido.Leave += txtApellido_Leave;
@@ -108,7 +108,7 @@
             txtDireccion.Location = new Point(118, 252);
             txtDireccion.Name = "txtDireccion";
             txtDireccion.Size = new Size(362, 27);
-            txtDireccion.TabIndex = 21;
+            txtDireccion.TabIndex = 7;
             txtDireccion.Text = "Dirección";
             txtDireccion.Click += txtDireccion_Click;
             txtDireccion.Leave += txtDireccion_Leave;
@@ -118,7 +118,7 @@
             txtTelefono.Location = new Point(118, 299);
             txtTelefono.Name = "txtTelefono";
             txtTelefono.Size = new Size(362, 27);
-            txtTelefono.TabIndex = 22;
+            txtTelefono.TabIndex = 9;
             txtTelefono.Text = "Teléfono";
             txtTelefono.Click += txtTelefono_Click;
             txtTelefono.Leave += txtTelefono_Leave;
@@ -128,7 +128,7 @@
             txtEmail.Location = new Point(118, 344);
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(362, 27);
-            txtEmail.TabIndex = 23;
+            txtEmail.TabIndex = 11;
             txtEmail.Text = "Email";
             txtEmail.Click += txtEmail_Click;
             txtEmail.Leave += txtEmail_Leave;
@@ -149,7 +149,7 @@
             Controls.Add(lblTitle);
             Name = "IngresoNoSocio";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "IngresoNoSocio";
+            Text = "Primer ingreso";
             Load += IngresoNoSocio_Load;
             ResumeLayout(false);
             PerformLayout();

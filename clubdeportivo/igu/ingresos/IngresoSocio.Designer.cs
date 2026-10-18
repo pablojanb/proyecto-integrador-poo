@@ -132,7 +132,7 @@
             Controls.Add(lblTitle);
             Name = "IngresoSocio";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "IngresoSocio";
+            Text = "Nuevo ingreso";
             ResumeLayout(false);
             PerformLayout();
         }

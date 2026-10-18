@@ -1,6 +1,3 @@
-using AltaSocioPrueba;
-using clubdeportivo.igu;
-using clubdeportivo.igu.socios;
 
 namespace clubdeportivo
 {

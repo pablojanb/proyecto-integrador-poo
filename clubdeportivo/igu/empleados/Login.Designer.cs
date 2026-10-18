@@ -121,7 +121,8 @@
             Margin = new Padding(3, 4, 3, 4);
             Name = "Login";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "IFTS  - 29 Club deportivo";
+            Text = "IFTS  29 - Login";
+            FormClosed += Login_FormClosed;
             Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)imgFondo).EndInit();
             ResumeLayout(false);

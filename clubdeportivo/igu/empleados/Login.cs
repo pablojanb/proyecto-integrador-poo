@@ -68,7 +68,7 @@ namespace clubdeportivo
         {
             string username = txtUsername.Text;
             string password = txtPassword.Text;
-            
+
             empleado = empleadoAdministrativoService.obtenerEmpleadoPorUsername(username);
             if (empleado != null)
             {
@@ -85,7 +85,8 @@ namespace clubdeportivo
                     CredencialesIncorrectas popUp = new CredencialesIncorrectas();
                     popUp.ShowDialog();
                 }
-            } else
+            }
+            else
             {
                 CredencialesIncorrectas popUp = new CredencialesIncorrectas();
                 popUp.ShowDialog();
@@ -147,6 +148,11 @@ namespace clubdeportivo
                 btnAceptar.BackColor = Color.DarkGray;
                 btnAceptar.ForeColor = Color.Gray;
             }
+        }
+
+        private void Login_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

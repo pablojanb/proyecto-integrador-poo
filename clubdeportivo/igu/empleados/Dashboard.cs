@@ -47,7 +47,7 @@ namespace clubdeportivo.igu
 
         private void btnAltaSocio_Click(object sender, EventArgs e)
         {
-            FormAltaSocio form = new FormAltaSocio();
+            AltaSocio form = new AltaSocio();
             form.Show();
         }
 

@@ -1,6 +1,6 @@
 ﻿namespace AltaSocioPrueba
 {
-    partial class FormAltaSocio
+    partial class AltaSocio
     {
         /// <summary>
         ///  Required designer variable.
@@ -28,15 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
             txtNombre = new TextBox();
-            label2 = new Label();
             txtApellido = new TextBox();
-            label3 = new Label();
             txtDni = new TextBox();
-            label4 = new Label();
-            txtDirección = new TextBox();
-            label5 = new Label();
+            txtDireccion = new TextBox();
             txtTelefono = new TextBox();
             label6 = new Label();
             dtpFechaNacimiento = new DateTimePicker();
@@ -45,110 +40,76 @@
             btnCrear = new Button();
             lblTitulo = new Label();
             txtEmail = new TextBox();
-            label7 = new Label();
+            chbAptoFisico = new CheckBox();
             SuspendLayout();
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 14F);
-            label1.Location = new Point(87, 118);
-            label1.Name = "label1";
-            label1.Size = new Size(107, 32);
-            label1.TabIndex = 0;
-            label1.Text = "Nombre:";
             // 
             // txtNombre
             // 
             txtNombre.Font = new Font("Segoe UI", 14F);
-            txtNombre.Location = new Point(245, 115);
+            txtNombre.Location = new Point(190, 115);
             txtNombre.Margin = new Padding(3, 4, 3, 4);
             txtNombre.Name = "txtNombre";
             txtNombre.Size = new Size(363, 39);
             txtNombre.TabIndex = 1;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 14F);
-            label2.Location = new Point(87, 170);
-            label2.Name = "label2";
-            label2.Size = new Size(107, 32);
-            label2.TabIndex = 2;
-            label2.Text = "Apellido:";
+            txtNombre.Text = "Nombre";
+            txtNombre.Click += txtNombre_Click;
+            txtNombre.TextChanged += txtNombre_TextChanged;
+            txtNombre.Leave += txtNombre_Leave;
             // 
             // txtApellido
             // 
             txtApellido.Font = new Font("Segoe UI", 14F);
-            txtApellido.Location = new Point(245, 170);
+            txtApellido.Location = new Point(190, 170);
             txtApellido.Margin = new Padding(3, 4, 3, 4);
             txtApellido.Name = "txtApellido";
             txtApellido.Size = new Size(363, 39);
             txtApellido.TabIndex = 3;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 14F);
-            label3.Location = new Point(87, 225);
-            label3.Name = "label3";
-            label3.Size = new Size(60, 32);
-            label3.TabIndex = 4;
-            label3.Text = "DNI:";
+            txtApellido.Text = "Apellido";
+            txtApellido.Click += txtApellido_Click;
+            txtApellido.TextChanged += txtApellido_TextChanged;
+            txtApellido.Leave += txtApellido_Leave;
             // 
             // txtDni
             // 
             txtDni.Font = new Font("Segoe UI", 14F);
-            txtDni.Location = new Point(245, 225);
+            txtDni.Location = new Point(190, 225);
             txtDni.Margin = new Padding(3, 4, 3, 4);
             txtDni.Name = "txtDni";
             txtDni.Size = new Size(363, 39);
             txtDni.TabIndex = 5;
+            txtDni.Text = "DNI";
+            txtDni.Click += txtDni_Click;
+            txtDni.Leave += txtDni_Leave;
             // 
-            // label4
+            // txtDireccion
             // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 14F);
-            label4.Location = new Point(87, 286);
-            label4.Name = "label4";
-            label4.Size = new Size(119, 32);
-            label4.TabIndex = 6;
-            label4.Text = "Dirección:";
-            // 
-            // txtDirección
-            // 
-            txtDirección.Font = new Font("Segoe UI", 14F);
-            txtDirección.Location = new Point(245, 280);
-            txtDirección.Margin = new Padding(3, 4, 3, 4);
-            txtDirección.Name = "txtDirección";
-            txtDirección.Size = new Size(363, 39);
-            txtDirección.TabIndex = 7;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI", 14F);
-            label5.Location = new Point(84, 337);
-            label5.Name = "label5";
-            label5.Size = new Size(112, 32);
-            label5.TabIndex = 8;
-            label5.Text = "Telefono:";
-            label5.Click += label5_Click;
+            txtDireccion.Font = new Font("Segoe UI", 14F);
+            txtDireccion.Location = new Point(190, 280);
+            txtDireccion.Margin = new Padding(3, 4, 3, 4);
+            txtDireccion.Name = "txtDireccion";
+            txtDireccion.Size = new Size(363, 39);
+            txtDireccion.TabIndex = 7;
+            txtDireccion.Text = "Dirección";
+            txtDireccion.Click += txtDireccion_Click;
+            txtDireccion.Leave += txtDireccion_Leave;
             // 
             // txtTelefono
             // 
             txtTelefono.Font = new Font("Segoe UI", 14F);
-            txtTelefono.Location = new Point(245, 337);
+            txtTelefono.Location = new Point(190, 337);
             txtTelefono.Margin = new Padding(3, 4, 3, 4);
             txtTelefono.Name = "txtTelefono";
             txtTelefono.Size = new Size(363, 39);
             txtTelefono.TabIndex = 9;
+            txtTelefono.Text = "Teléfono";
+            txtTelefono.Click += txtTelefono_Click;
+            txtTelefono.Leave += txtTelefono_Leave;
             // 
             // label6
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 14F);
-            label6.Location = new Point(84, 463);
+            label6.Location = new Point(190, 470);
             label6.Name = "label6";
             label6.Size = new Size(245, 32);
             label6.TabIndex = 10;
@@ -157,17 +118,17 @@
             // dtpFechaNacimiento
             // 
             dtpFechaNacimiento.Font = new Font("Segoe UI", 14F);
-            dtpFechaNacimiento.Location = new Point(380, 463);
+            dtpFechaNacimiento.Location = new Point(190, 532);
             dtpFechaNacimiento.Margin = new Padding(3, 4, 3, 4);
             dtpFechaNacimiento.Name = "dtpFechaNacimiento";
-            dtpFechaNacimiento.Size = new Size(228, 39);
-            dtpFechaNacimiento.TabIndex = 11;
+            dtpFechaNacimiento.Size = new Size(363, 39);
+            dtpFechaNacimiento.TabIndex = 12;
             // 
             // btnLimpiar
             // 
             btnLimpiar.BackColor = Color.Black;
             btnLimpiar.ForeColor = Color.White;
-            btnLimpiar.Location = new Point(657, 91);
+            btnLimpiar.Location = new Point(661, 113);
             btnLimpiar.Name = "btnLimpiar";
             btnLimpiar.Size = new Size(206, 41);
             btnLimpiar.TabIndex = 19;
@@ -179,7 +140,7 @@
             // 
             btnVolver.BackColor = Color.Black;
             btnVolver.ForeColor = Color.White;
-            btnVolver.Location = new Point(657, 166);
+            btnVolver.Location = new Point(661, 188);
             btnVolver.Name = "btnVolver";
             btnVolver.Size = new Size(206, 41);
             btnVolver.TabIndex = 20;
@@ -191,7 +152,7 @@
             // 
             btnCrear.BackColor = Color.Black;
             btnCrear.ForeColor = Color.White;
-            btnCrear.Location = new Point(657, 244);
+            btnCrear.Location = new Point(661, 266);
             btnCrear.Name = "btnCrear";
             btnCrear.Size = new Size(206, 41);
             btnCrear.TabIndex = 21;
@@ -203,7 +164,7 @@
             // 
             lblTitulo.AutoSize = true;
             lblTitulo.Font = new Font("Segoe UI", 20F);
-            lblTitulo.Location = new Point(220, 38);
+            lblTitulo.Location = new Point(341, 27);
             lblTitulo.Name = "lblTitulo";
             lblTitulo.Size = new Size(267, 46);
             lblTitulo.TabIndex = 22;
@@ -212,29 +173,33 @@
             // txtEmail
             // 
             txtEmail.Font = new Font("Segoe UI", 14F);
-            txtEmail.Location = new Point(245, 398);
+            txtEmail.Location = new Point(190, 398);
             txtEmail.Margin = new Padding(3, 4, 3, 4);
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(363, 39);
-            txtEmail.TabIndex = 24;
+            txtEmail.TabIndex = 11;
+            txtEmail.Text = "Email";
+            txtEmail.Click += txtEmail_Click;
+            txtEmail.Leave += txtEmail_Leave;
             // 
-            // label7
+            // chbAptoFisico
             // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Segoe UI", 14F);
-            label7.Location = new Point(87, 405);
-            label7.Name = "label7";
-            label7.Size = new Size(76, 32);
-            label7.TabIndex = 23;
-            label7.Text = "Email:";
+            chbAptoFisico.AutoSize = true;
+            chbAptoFisico.Font = new Font("Segoe UI", 14F);
+            chbAptoFisico.Location = new Point(190, 618);
+            chbAptoFisico.Name = "chbAptoFisico";
+            chbAptoFisico.Size = new Size(153, 36);
+            chbAptoFisico.TabIndex = 14;
+            chbAptoFisico.Text = "Apto Físico";
+            chbAptoFisico.UseVisualStyleBackColor = true;
             // 
-            // FormAltaSocio
+            // AltaSocio
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(914, 600);
+            ClientSize = new Size(914, 713);
+            Controls.Add(chbAptoFisico);
             Controls.Add(txtEmail);
-            Controls.Add(label7);
             Controls.Add(lblTitulo);
             Controls.Add(btnCrear);
             Controls.Add(btnVolver);
@@ -242,17 +207,12 @@
             Controls.Add(dtpFechaNacimiento);
             Controls.Add(label6);
             Controls.Add(txtTelefono);
-            Controls.Add(label5);
-            Controls.Add(txtDirección);
-            Controls.Add(label4);
+            Controls.Add(txtDireccion);
             Controls.Add(txtDni);
-            Controls.Add(label3);
             Controls.Add(txtApellido);
-            Controls.Add(label2);
             Controls.Add(txtNombre);
-            Controls.Add(label1);
             Margin = new Padding(3, 4, 3, 4);
-            Name = "FormAltaSocio";
+            Name = "AltaSocio";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Alta socio";
             ResumeLayout(false);
@@ -260,16 +220,10 @@
         }
 
         #endregion
-
-        private Label label1;
         private TextBox txtNombre;
-        private Label label2;
         private TextBox txtApellido;
-        private Label label3;
         private TextBox txtDni;
-        private Label label4;
-        private TextBox txtDirección;
-        private Label label5;
+        private TextBox txtDireccion;
         private TextBox txtTelefono;
         private Label label6;
         private DateTimePicker dtpFechaNacimiento;
@@ -278,6 +232,6 @@
         private Button btnCrear;
         private Label lblTitulo;
         private TextBox txtEmail;
-        private Label label7;
+        private CheckBox chbAptoFisico;
     }
 }
