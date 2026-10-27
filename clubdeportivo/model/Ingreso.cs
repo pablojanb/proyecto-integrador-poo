@@ -6,8 +6,11 @@ namespace clubdeportivo.model
         private long id;
         private Persona persona;
         private DateTime ingresoHorario;
-        private DateTime egresoHorario;
+        private DateTime? egresoHorario;
 
+        public Ingreso()
+        {
+        }
         public Ingreso(Persona persona, DateTime ingresoHorario)
         {
             Persona = persona;
@@ -16,7 +19,7 @@ namespace clubdeportivo.model
 
         public long Id { get => id; set => id = value; }
   
-        public DateTime EgresoHorario { get => egresoHorario; set => egresoHorario = value; }
+        public DateTime? EgresoHorario { get => egresoHorario; set => egresoHorario = value; }
         public DateTime IngresoHorario { get => ingresoHorario; set => ingresoHorario = value; }
         internal Persona Persona { get => persona; set => persona = value; }
     }

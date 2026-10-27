@@ -226,5 +226,61 @@ namespace clubdeportivo.repository
                 }
             }
         }
+
+        internal Persona obtenerPersonaPorId(long idPersona)
+        {
+            Persona persona = new();
+            MySqlConnection dbConnection = null;
+            try
+            {
+                dbConnection = DBConection.CrearConexion();
+                var query = "SELECT p.id, nombre, apellido, dni, direccion, telefono, email " +
+                    "FROM personas p " +
+                    "WHERE p.id = @id";
+                MySqlCommand comando = new MySqlCommand(query, dbConnection);
+                comando.Parameters.AddWithValue("@id", idPersona);
+
+                dbConnection.Open();
+
+                using (MySqlDataReader respuesta = comando.ExecuteReader())
+                {
+                    if (respuesta.Read())
+                    {
+                        var id = respuesta.GetInt64("id");
+                        var nombre = respuesta.GetString("nombre");
+                        var apellido = respuesta.GetString("apellido");
+                        var dni = respuesta.GetString("dni");
+                        var direccion = respuesta.GetString("direccion");
+                        var telefono = respuesta.GetString("telefono");
+                        var email = respuesta.GetString("email");
+                        persona.Id = id;
+                        persona.Nombre = nombre;
+                        persona.Apellido = apellido;
+                        persona.Dni = dni;
+                        persona.Direccion = direccion;
+                        persona.Telefono = telefono;
+                        persona.Email = email;
+                        return persona;
+                    }
+                    else
+                    {
+                        return null;
+                    }
+
+                }
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine($"MySQL Error {ex.Number}: {ex.Message}");
+                throw;
+            }
+            finally
+            {
+                if (dbConnection != null && dbConnection.State == ConnectionState.Open)
+                {
+                    dbConnection.Close();
+                }
+            }
+        }
     }
 }

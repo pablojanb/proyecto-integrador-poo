@@ -61,19 +61,27 @@ namespace clubdeportivo.igu
                 if (registro == "Ingreso")
                 {
                     ingresoService.crearNuevoIngreso(persona, DateTime.Now);
+                    this.Close();
                 }
                 else
                 {
-                    ingresoService.obtenerUltimoIngresoPorPersonaId(persona.Id);
-
+                    Ingreso ingreso = ingresoService.obtenerUltimoIngresoPorPersonaId(persona.Id);
+                    if (ingreso != null)
+                    {
+                        ingreso.EgresoHorario = DateTime.Now;
+                        Ingreso guardado = ingresoService.actualizarIngresoPor(ingreso);
+                        this.Close();
+                    } else
+                    {
+                        SinIngreso sinIngresoPopUp = new SinIngreso();
+                        sinIngresoPopUp.Show();
+                    }
                 }
             } else
             {
                 Error ingresoErr = new Error();
                 ingresoErr.Show();
             }
-
-
         }
 
         private void cmbIngreso_SelectedIndexChanged(object sender, EventArgs e)

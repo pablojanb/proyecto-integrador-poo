@@ -36,7 +36,7 @@
             // 
             lblInfo.AutoSize = true;
             lblInfo.Font = new Font("Segoe UI", 16F);
-            lblInfo.Location = new Point(169, 146);
+            lblInfo.Location = new Point(67, 55);
             lblInfo.Name = "lblInfo";
             lblInfo.Size = new Size(488, 37);
             lblInfo.TabIndex = 19;
@@ -47,22 +47,24 @@
             // 
             btnAceptar.BackColor = Color.Black;
             btnAceptar.ForeColor = Color.White;
-            btnAceptar.Location = new Point(297, 266);
+            btnAceptar.Location = new Point(187, 122);
             btnAceptar.Name = "btnAceptar";
             btnAceptar.Size = new Size(206, 41);
             btnAceptar.TabIndex = 20;
             btnAceptar.Text = "Aceptar";
             btnAceptar.UseVisualStyleBackColor = false;
+            btnAceptar.Click += btnAceptar_Click;
             // 
             // SinIngreso
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(614, 217);
             Controls.Add(lblInfo);
             Controls.Add(btnAceptar);
             Name = "SinIngreso";
-            Text = "SinIngreso";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Error";
             ResumeLayout(false);
             PerformLayout();
         }
