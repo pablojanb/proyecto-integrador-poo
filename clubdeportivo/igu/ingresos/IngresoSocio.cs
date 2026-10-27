@@ -43,44 +43,61 @@ namespace clubdeportivo.igu
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            Persona persona;
-            string registro = cmbIngreso.Text;
-            string dato = cmbDni.Text;
-            if (dato == "DNI")
+            using (ConfirmarIngreso confirmar = new ConfirmarIngreso())
             {
-                string dniPersona = txtDni.Text;
-                persona = personaService.obtenerPersonaPorDni(dniPersona);
-            }
-            else
-            {
-                long nroSocio = long.Parse(txtDni.Text);
-                persona = personaService.obtenerPersonaPorNroSocio(nroSocio);
-            }
-            if (persona != null)
-            {
-                if (registro == "Ingreso")
+                if (confirmar.ShowDialog() == DialogResult.OK)
                 {
-                    ingresoService.crearNuevoIngreso(persona, DateTime.Now);
-                    this.Close();
-                }
-                else
-                {
-                    Ingreso ingreso = ingresoService.obtenerUltimoIngresoPorPersonaId(persona.Id);
-                    if (ingreso != null)
+                    try
                     {
-                        ingreso.EgresoHorario = DateTime.Now;
-                        Ingreso guardado = ingresoService.actualizarIngresoPor(ingreso);
-                        this.Close();
-                    } else
+                        Persona persona;
+                        string registro = cmbIngreso.Text;
+                        string dato = cmbDni.Text;
+                        if (dato == "DNI")
+                        {
+                            string dniPersona = txtDni.Text;
+                            persona = personaService.obtenerPersonaPorDni(dniPersona);
+                        }
+                        else
+                        {
+                            long nroSocio = long.Parse(txtDni.Text);
+                            persona = personaService.obtenerPersonaPorNroSocio(nroSocio);
+                        }
+                        if (persona != null)
+                        {
+                            if (registro == "Ingreso")
+                            {
+                                ingresoService.crearNuevoIngreso(persona, DateTime.Now);
+                                this.Close();
+                            }
+                            else
+                            {
+                                Ingreso ingreso = ingresoService.obtenerUltimoIngresoPorPersonaId(persona.Id);
+                                if (ingreso != null && ingreso.EgresoHorario == null /* && !ingreso.EgresoHorario.Equals("")*/)
+                                {
+                                    Debug.WriteLine("Tipo de dato:");
+                                    //Debug.WriteLine(ingreso.EgresoHorario.GetType());
+                                    ingreso.EgresoHorario = DateTime.Now;
+                                    Ingreso guardado = ingresoService.actualizarIngresoPor(ingreso);
+                                    this.Close();
+                                }
+                                else
+                                {
+                                    SinIngreso sinIngresoPopUp = new SinIngreso();
+                                    sinIngresoPopUp.Show();
+                                }
+                            }
+                        }
+                        else
+                        {
+                            Error ingresoErr = new Error();
+                            ingresoErr.Show();
+                        }
+                    }
+                    catch
                     {
-                        SinIngreso sinIngresoPopUp = new SinIngreso();
-                        sinIngresoPopUp.Show();
+                        //TODO
                     }
                 }
-            } else
-            {
-                Error ingresoErr = new Error();
-                ingresoErr.Show();
             }
         }
 

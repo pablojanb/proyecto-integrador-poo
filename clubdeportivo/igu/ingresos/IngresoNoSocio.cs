@@ -1,10 +1,18 @@
 ﻿
+using clubdeportivo.model;
+using clubdeportivo.service;
+using System.Diagnostics;
+
 namespace clubdeportivo.igu
 {
     public partial class IngresoNoSocio : FormBase
     {
+        private PersonaService personaService;
+        private IngresoService ingresoService;
         public IngresoNoSocio()
         {
+            ingresoService = new IngresoService();
+            personaService = new PersonaService();
             InitializeComponent();
         }
 
@@ -83,37 +91,72 @@ namespace clubdeportivo.igu
 
         private void txtNombre_Click(object sender, EventArgs e)
         {
-            txtNombre.Text = "";
+            if (txtNombre.Text == "Nombre")
+            {
+                txtNombre.Text = "";
+            }
         }
 
         private void txtApellido_Click(object sender, EventArgs e)
         {
-            txtApellido.Text = "";
+            if (txtApellido.Text == "Apellido")
+            {
+                txtApellido.Text = "";
+            }
         }
 
         private void txtDni_Click(object sender, EventArgs e)
         {
-            txtDni.Text = "";
+            if (txtDni.Text == "DNI")
+            {
+                txtDni.Text = "";
+            }
         }
 
         private void txtDireccion_Click(object sender, EventArgs e)
         {
-            txtDireccion.Text = "";
+            if (txtDireccion.Text == "Dirección")
+            {
+                txtDireccion.Text = "";
+            }
         }
 
         private void txtTelefono_Click(object sender, EventArgs e)
         {
-            txtTelefono.Text = "";
+            if (txtTelefono.Text == "Teléfono")
+            {
+                txtTelefono.Text = "";
+            }
         }
 
         private void txtEmail_Click(object sender, EventArgs e)
         {
-            txtEmail.Text = "";
+            if (txtEmail.Text == "Email")
+            {
+                txtEmail.Text = "";
+            }
         }
 
         private void btnAceptar_Click_1(object sender, EventArgs e)
         {
-
+            Persona persona = new Persona(txtNombre.Text, txtApellido.Text, txtDni.Text, txtDireccion.Text,
+                txtTelefono.Text, txtEmail.Text);
+            using (ConfirmarIngreso confirmar = new ConfirmarIngreso())
+            {
+                if (confirmar.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        Persona guardada = personaService.crearPersona(persona);
+                        ingresoService.crearNuevoIngreso(guardada, DateTime.Now);
+                        this.Close();
+                    }
+                    catch
+                    {
+                        //TODO popup de persona con ingresos previos
+                    }
+                }
+            }
         }
     }
 }

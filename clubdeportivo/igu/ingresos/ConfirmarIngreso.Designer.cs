@@ -37,7 +37,7 @@
             // 
             lblConfirmacion.AutoSize = true;
             lblConfirmacion.Font = new Font("Segoe UI", 20F);
-            lblConfirmacion.Location = new Point(175, 132);
+            lblConfirmacion.Location = new Point(63, 57);
             lblConfirmacion.Name = "lblConfirmacion";
             lblConfirmacion.Size = new Size(455, 46);
             lblConfirmacion.TabIndex = 13;
@@ -48,34 +48,37 @@
             // 
             btnCancelar.BackColor = Color.DarkRed;
             btnCancelar.ForeColor = Color.White;
-            btnCancelar.Location = new Point(407, 272);
+            btnCancelar.Location = new Point(312, 153);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(206, 41);
             btnCancelar.TabIndex = 16;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = false;
+            btnCancelar.Click += btnCancelar_Click;
             // 
             // btnAceptar
             // 
             btnAceptar.BackColor = Color.Black;
             btnAceptar.ForeColor = Color.White;
-            btnAceptar.Location = new Point(160, 272);
+            btnAceptar.Location = new Point(65, 153);
             btnAceptar.Name = "btnAceptar";
             btnAceptar.Size = new Size(206, 41);
             btnAceptar.TabIndex = 15;
             btnAceptar.Text = "Aceptar";
             btnAceptar.UseVisualStyleBackColor = false;
+            btnAceptar.Click += btnAceptar_Click;
             // 
             // ConfirmarIngreso
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(569, 236);
             Controls.Add(btnCancelar);
             Controls.Add(btnAceptar);
             Controls.Add(lblConfirmacion);
             Name = "ConfirmarIngreso";
-            Text = "ConfirmarIngreso";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Confirmar Ingreso";
             ResumeLayout(false);
             PerformLayout();
         }
