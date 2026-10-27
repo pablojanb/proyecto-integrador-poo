@@ -71,6 +71,7 @@
             btnAceptar.TabIndex = 13;
             btnAceptar.Text = "Aceptar";
             btnAceptar.UseVisualStyleBackColor = false;
+            btnAceptar.Click += btnAceptar_Click_1;
             // 
             // lblTitle
             // 

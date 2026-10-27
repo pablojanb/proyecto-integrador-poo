@@ -1,5 +1,6 @@
 ﻿using clubdeportivo.model;
 using clubdeportivo.service;
+using System.Diagnostics;
 
 namespace clubdeportivo.igu
 {
@@ -55,14 +56,23 @@ namespace clubdeportivo.igu
                 long nroSocio = long.Parse(txtDni.Text);
                 persona = personaService.obtenerPersonaPorNroSocio(nroSocio);
             }
-            if (registro == "Ingreso")
+            if (persona != null)
             {
+                if (registro == "Ingreso")
+                {
+                    ingresoService.crearNuevoIngreso(persona, DateTime.Now);
+                }
+                else
+                {
+                    ingresoService.obtenerUltimoIngresoPorPersonaId(persona.Id);
 
-            }
-            else
+                }
+            } else
             {
-
+                Error ingresoErr = new Error();
+                ingresoErr.Show();
             }
+
 
         }
 

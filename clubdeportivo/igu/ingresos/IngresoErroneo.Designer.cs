@@ -1,6 +1,6 @@
 ﻿namespace clubdeportivo.igu
 {
-    partial class IngresoErroneo
+    partial class Error
     {
         /// <summary>
         /// Required designer variable.
@@ -42,6 +42,7 @@
             btnAceptar.TabIndex = 18;
             btnAceptar.Text = "Aceptar";
             btnAceptar.UseVisualStyleBackColor = false;
+            btnAceptar.Click += btnAceptar_Click;
             // 
             // lblConfirmacion
             // 
@@ -54,14 +55,15 @@
             lblConfirmacion.Text = "En el sistema no existe un socio con los datos ingresados";
             lblConfirmacion.Click += lblConfirmacion_Click_1;
             // 
-            // IngresoErroneo
+            // Error
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(754, 234);
             Controls.Add(lblConfirmacion);
             Controls.Add(btnAceptar);
-            Name = "IngresoErroneo";
+            Name = "Error";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "IngresoErroneo";
             ResumeLayout(false);
             PerformLayout();

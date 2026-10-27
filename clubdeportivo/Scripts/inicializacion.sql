@@ -83,6 +83,14 @@ SELECT 1, 2, '2026-10-01 10:30:00', 20000.00, 'Pago mensual de membresía' WHERE
 INSERT INTO pagos (id_membresia, id_medio_pago, fecha_hora, monto, detalle)
 SELECT 1, 1, '2026-10-01 10:30:00', 5000.00, 'Pago mensual de membresía' WHERE NOT EXISTS (SELECT 1 FROM pagos WHERE id = 2);
 
+CREATE TABLE IF NOT EXISTS ingresos (
+	id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    id_persona BIGINT,
+    ingresoHorario DATETIME,
+    egresoHorario DATETIME NULL,
+	FOREIGN KEY (id_persona) REFERENCES personas(id)
+);
+
 DROP PROCEDURE IF EXISTS login;
 CREATE PROCEDURE login(in p_username varchar(50), in p_password varchar(200))
 begin
