@@ -1,4 +1,5 @@
 ﻿
+using clubdeportivo.igu.ingresos;
 using clubdeportivo.model;
 using clubdeportivo.service;
 using System.Diagnostics;
@@ -153,7 +154,8 @@ namespace clubdeportivo.igu
                     }
                     catch
                     {
-                        //TODO popup de persona con ingresos previos
+                        ErrorPrimerIngreso errorIngreso = new ErrorPrimerIngreso();
+                        errorIngreso.ShowDialog();
                     }
                 }
             }

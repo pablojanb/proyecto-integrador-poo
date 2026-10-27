@@ -64,7 +64,7 @@
             Controls.Add(btnAceptar);
             Name = "Error";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "IngresoErroneo";
+            Text = "Error";
             ResumeLayout(false);
             PerformLayout();
         }

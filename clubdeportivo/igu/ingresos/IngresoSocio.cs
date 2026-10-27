@@ -72,10 +72,9 @@ namespace clubdeportivo.igu
                             else
                             {
                                 Ingreso ingreso = ingresoService.obtenerUltimoIngresoPorPersonaId(persona.Id);
-                                if (ingreso != null && ingreso.EgresoHorario == null /* && !ingreso.EgresoHorario.Equals("")*/)
+                                if (ingreso != null && ingreso.EgresoHorario == null)
                                 {
                                     Debug.WriteLine("Tipo de dato:");
-                                    //Debug.WriteLine(ingreso.EgresoHorario.GetType());
                                     ingreso.EgresoHorario = DateTime.Now;
                                     Ingreso guardado = ingresoService.actualizarIngresoPor(ingreso);
                                     this.Close();
