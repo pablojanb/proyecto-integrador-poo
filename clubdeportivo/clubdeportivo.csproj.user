@@ -4,6 +4,9 @@
     <Compile Update="igu\ingresos\ErrorPrimerIngreso.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="igu\ingresos\IngresoActivo.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="igu\SesionTimer.cs">
       <SubType>Form</SubType>
     </Compile>

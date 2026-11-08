@@ -37,6 +37,7 @@
             txtDireccion = new TextBox();
             txtTelefono = new TextBox();
             txtEmail = new TextBox();
+            chbAptoFisico = new CheckBox();
             SuspendLayout();
             // 
             // txtDni
@@ -53,7 +54,7 @@
             // 
             btnCancelar.BackColor = Color.DarkRed;
             btnCancelar.ForeColor = Color.White;
-            btnCancelar.Location = new Point(304, 394);
+            btnCancelar.Location = new Point(301, 467);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(164, 41);
             btnCancelar.TabIndex = 15;
@@ -65,7 +66,7 @@
             // 
             btnAceptar.BackColor = Color.Black;
             btnAceptar.ForeColor = Color.White;
-            btnAceptar.Location = new Point(121, 394);
+            btnAceptar.Location = new Point(118, 467);
             btnAceptar.Name = "btnAceptar";
             btnAceptar.Size = new Size(164, 41);
             btnAceptar.TabIndex = 13;
@@ -134,11 +135,23 @@
             txtEmail.Click += txtEmail_Click;
             txtEmail.Leave += txtEmail_Leave;
             // 
+            // chbAptoFisico
+            // 
+            chbAptoFisico.AutoSize = true;
+            chbAptoFisico.Font = new Font("Segoe UI", 12F);
+            chbAptoFisico.Location = new Point(118, 404);
+            chbAptoFisico.Name = "chbAptoFisico";
+            chbAptoFisico.Size = new Size(132, 32);
+            chbAptoFisico.TabIndex = 16;
+            chbAptoFisico.Text = "Apto Físico";
+            chbAptoFisico.UseVisualStyleBackColor = true;
+            // 
             // IngresoNoSocio
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(603, 470);
+            ClientSize = new Size(603, 552);
+            Controls.Add(chbAptoFisico);
             Controls.Add(txtEmail);
             Controls.Add(txtTelefono);
             Controls.Add(txtDireccion);
@@ -166,5 +179,6 @@
         private TextBox txtDireccion;
         private TextBox txtTelefono;
         private TextBox txtEmail;
+        private CheckBox chbAptoFisico;
     }
 }

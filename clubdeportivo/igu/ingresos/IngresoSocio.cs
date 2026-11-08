@@ -1,4 +1,5 @@
-﻿using clubdeportivo.model;
+﻿using clubdeportivo.igu.ingresos;
+using clubdeportivo.model;
 using clubdeportivo.service;
 using System.Diagnostics;
 
@@ -64,17 +65,25 @@ namespace clubdeportivo.igu
                         }
                         if (persona != null)
                         {
+                            Ingreso ingreso = ingresoService.obtenerUltimoIngresoPorPersonaId(persona.Id);
                             if (registro == "Ingreso")
                             {
-                                ingresoService.crearNuevoIngreso(persona, DateTime.Now);
-                                this.Close();
+                                if (ingreso == null || ingreso.EgresoHorario != null)
+                                {
+                                    ingresoService.crearNuevoIngreso(persona, DateTime.Now);
+                                    this.Close();
+                                }
+                                else
+                                {
+                                    IngresoActivo ingActivo = new IngresoActivo();
+                                    ingActivo.ShowDialog();
+                                }
+                                
                             }
                             else
                             {
-                                Ingreso ingreso = ingresoService.obtenerUltimoIngresoPorPersonaId(persona.Id);
                                 if (ingreso != null && ingreso.EgresoHorario == null)
                                 {
-                                    Debug.WriteLine("Tipo de dato:");
                                     ingreso.EgresoHorario = DateTime.Now;
                                     Ingreso guardado = ingresoService.actualizarIngresoPor(ingreso);
                                     this.Close();

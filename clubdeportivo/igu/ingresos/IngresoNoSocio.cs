@@ -138,24 +138,39 @@ namespace clubdeportivo.igu
             }
         }
 
+        public Boolean CamposSonValidos()
+        {
+            return (
+               (!string.IsNullOrWhiteSpace(txtNombre.Text) && txtNombre.Text != "Nombre") &&
+               (!string.IsNullOrWhiteSpace(txtApellido.Text) && txtApellido.Text != "Apellido") &&
+               (!string.IsNullOrWhiteSpace(txtDni.Text) && txtDni.Text != "DNI") &&
+               (!string.IsNullOrWhiteSpace(txtDireccion.Text) && txtDireccion.Text != "Dirección") &&
+               (!string.IsNullOrWhiteSpace(txtEmail.Text) && txtEmail.Text != "Email") &&
+               chbAptoFisico.Checked
+               );
+        }
+
         private void btnAceptar_Click_1(object sender, EventArgs e)
         {
-            Persona persona = new Persona(txtNombre.Text, txtApellido.Text, txtDni.Text, txtDireccion.Text,
-                txtTelefono.Text, txtEmail.Text, true);
-            using (ConfirmarIngreso confirmar = new ConfirmarIngreso())
+            if (!CamposSonValidos())
             {
-                if (confirmar.ShowDialog() == DialogResult.OK)
+                Persona persona = new Persona(txtNombre.Text, txtApellido.Text, txtDni.Text, txtDireccion.Text,
+                txtTelefono.Text, txtEmail.Text, true);
+                using (ConfirmarIngreso confirmar = new ConfirmarIngreso())
                 {
-                    try
+                    if (confirmar.ShowDialog() == DialogResult.OK)
                     {
-                        Persona guardada = personaService.crearPersona(persona);
-                        ingresoService.crearNuevoIngreso(guardada, DateTime.Now);
-                        this.Close();
-                    }
-                    catch
-                    {
-                        ErrorPrimerIngreso errorIngreso = new ErrorPrimerIngreso();
-                        errorIngreso.ShowDialog();
+                        try
+                        {
+                            Persona guardada = personaService.crearPersona(persona);
+                            ingresoService.crearNuevoIngreso(guardada, DateTime.Now);
+                            this.Close();
+                        }
+                        catch
+                        {
+                            ErrorPrimerIngreso errorIngreso = new ErrorPrimerIngreso();
+                            errorIngreso.ShowDialog();
+                        }
                     }
                 }
             }
