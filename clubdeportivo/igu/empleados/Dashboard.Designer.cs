@@ -37,6 +37,7 @@
             btnEmitirCarnet = new Button();
             btnVencimientos = new Button();
             btnSalir = new Button();
+            btnPagos = new Button();
             ((System.ComponentModel.ISupportInitialize)imgFondo).BeginInit();
             SuspendLayout();
             // 
@@ -65,7 +66,7 @@
             // 
             btnAltaSocio.BackColor = Color.Black;
             btnAltaSocio.ForeColor = Color.White;
-            btnAltaSocio.Location = new Point(600, 212);
+            btnAltaSocio.Location = new Point(600, 188);
             btnAltaSocio.Name = "btnAltaSocio";
             btnAltaSocio.Size = new Size(241, 52);
             btnAltaSocio.TabIndex = 2;
@@ -88,7 +89,7 @@
             // 
             btnIngresoEgreso.BackColor = Color.Black;
             btnIngresoEgreso.ForeColor = Color.White;
-            btnIngresoEgreso.Location = new Point(600, 270);
+            btnIngresoEgreso.Location = new Point(600, 246);
             btnIngresoEgreso.Name = "btnIngresoEgreso";
             btnIngresoEgreso.Size = new Size(241, 52);
             btnIngresoEgreso.TabIndex = 4;
@@ -100,18 +101,18 @@
             // 
             btnEmitirCarnet.BackColor = Color.Black;
             btnEmitirCarnet.ForeColor = Color.White;
-            btnEmitirCarnet.Location = new Point(600, 328);
+            btnEmitirCarnet.Location = new Point(600, 304);
             btnEmitirCarnet.Name = "btnEmitirCarnet";
             btnEmitirCarnet.Size = new Size(241, 52);
             btnEmitirCarnet.TabIndex = 5;
-            btnEmitirCarnet.Text = "Emitir carnet";
+            btnEmitirCarnet.Text = "Carnets";
             btnEmitirCarnet.UseVisualStyleBackColor = false;
             // 
             // btnVencimientos
             // 
             btnVencimientos.BackColor = Color.Black;
             btnVencimientos.ForeColor = Color.White;
-            btnVencimientos.Location = new Point(600, 386);
+            btnVencimientos.Location = new Point(600, 421);
             btnVencimientos.Name = "btnVencimientos";
             btnVencimientos.Size = new Size(241, 52);
             btnVencimientos.TabIndex = 6;
@@ -123,7 +124,7 @@
             // 
             btnSalir.BackColor = Color.Black;
             btnSalir.ForeColor = Color.White;
-            btnSalir.Location = new Point(600, 444);
+            btnSalir.Location = new Point(600, 479);
             btnSalir.Name = "btnSalir";
             btnSalir.Size = new Size(241, 52);
             btnSalir.TabIndex = 7;
@@ -131,11 +132,23 @@
             btnSalir.UseVisualStyleBackColor = false;
             btnSalir.Click += btnSalir_Click;
             // 
+            // btnPagos
+            // 
+            btnPagos.BackColor = Color.Black;
+            btnPagos.ForeColor = Color.White;
+            btnPagos.Location = new Point(600, 363);
+            btnPagos.Name = "btnPagos";
+            btnPagos.Size = new Size(241, 52);
+            btnPagos.TabIndex = 8;
+            btnPagos.Text = "Pagos";
+            btnPagos.UseVisualStyleBackColor = false;
+            // 
             // Dashboard
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(941, 551);
+            Controls.Add(btnPagos);
             Controls.Add(btnSalir);
             Controls.Add(btnVencimientos);
             Controls.Add(btnEmitirCarnet);
@@ -165,5 +178,6 @@
         private Button btnEmitirCarnet;
         private Button btnVencimientos;
         private Button btnSalir;
+        private Button btnPagos;
     }
 }
