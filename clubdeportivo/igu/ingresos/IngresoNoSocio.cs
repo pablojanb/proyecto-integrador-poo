@@ -1,5 +1,6 @@
 ﻿
 using clubdeportivo.igu.ingresos;
+using clubdeportivo.igu.socios;
 using clubdeportivo.model;
 using clubdeportivo.service;
 using System.Diagnostics;
@@ -154,23 +155,26 @@ namespace clubdeportivo.igu
         {
             if (!CamposSonValidos())
             {
-                Persona persona = new Persona(txtNombre.Text, txtApellido.Text, txtDni.Text, txtDireccion.Text,
+                CamposObligatorios camposObl = new CamposObligatorios();
+                camposObl.Show();
+                return;
+            }
+            Persona persona = new Persona(txtNombre.Text, txtApellido.Text, txtDni.Text, txtDireccion.Text,
                 txtTelefono.Text, txtEmail.Text, true);
-                using (ConfirmarIngreso confirmar = new ConfirmarIngreso())
+            using (ConfirmarIngreso confirmar = new ConfirmarIngreso())
+            {
+                if (confirmar.ShowDialog() == DialogResult.OK)
                 {
-                    if (confirmar.ShowDialog() == DialogResult.OK)
+                    try
                     {
-                        try
-                        {
-                            Persona guardada = personaService.crearPersona(persona);
-                            ingresoService.crearNuevoIngreso(guardada, DateTime.Now);
-                            this.Close();
-                        }
-                        catch
-                        {
-                            ErrorPrimerIngreso errorIngreso = new ErrorPrimerIngreso();
-                            errorIngreso.ShowDialog();
-                        }
+                        Persona guardada = personaService.crearPersona(persona);
+                        ingresoService.crearNuevoIngreso(guardada, DateTime.Now);
+                        this.Close();
+                    }
+                    catch
+                    {
+                        ErrorPrimerIngreso errorIngreso = new ErrorPrimerIngreso();
+                        errorIngreso.ShowDialog();
                     }
                 }
             }
