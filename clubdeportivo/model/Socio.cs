@@ -1,7 +1,7 @@
 ﻿
 namespace clubdeportivo.model
 {
-    internal class Socio : Persona
+    public class Socio : Persona
     {
         private long id;
         private long numAfiliado;

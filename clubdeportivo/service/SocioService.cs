@@ -21,6 +21,11 @@ namespace clubdeportivo.service
             return repository.obtenerSocioPorNroSocio(nroSocio);
         }
 
+        public Socio obtenerSocioPorDni(string dni)
+        {
+            return repository.obtenerSocioPorDni(dni);
+        }
+
         public Socio crearSocio(Persona persona)
         {
             Persona personaCreada = personaService.crearPersona(persona);

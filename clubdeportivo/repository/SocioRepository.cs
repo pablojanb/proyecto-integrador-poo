@@ -36,8 +36,64 @@ namespace clubdeportivo.repository
                         socio.Telefono = respuesta.GetString("telefono");
                         socio.Email = respuesta.GetString("email");
                         socio.NumAfiliado = respuesta.GetInt64("num_afiliado");
+                        socio.FechaAlta = DateOnly.FromDateTime(
+                            respuesta.GetDateTime("fecha_alta")
+                        );
                         return socio;
                     } else
+                    {
+                        return null;
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine($"MySQL Error {ex.Number}: {ex.Message}");
+                throw;
+            }
+            finally
+            {
+                if (dbConnection != null && dbConnection.State == ConnectionState.Open)
+                {
+                    dbConnection.Close();
+                }
+            }
+        }
+
+        public Socio obtenerSocioPorDni(string dni)
+        {
+            Socio socio = new();
+            MySqlConnection dbConnection = null;
+            try
+            {
+                dbConnection = DBConection.CrearConexion();
+                var query = "SELECT nombre, apellido, dni, direccion, telefono, email, " +
+                    "num_afiliado, fecha_alta, fecha_baja " +
+                    "FROM personas p " +
+                    "JOIN socios s ON p.id = s.id " +
+                    "WHERE p.dni = @dni";
+                MySqlCommand comando = new MySqlCommand(query, dbConnection);
+                comando.Parameters.AddWithValue("@dni", dni);
+
+                dbConnection.Open();
+
+                using (MySqlDataReader respuesta = comando.ExecuteReader())
+                {
+                    if (respuesta.Read())
+                    {
+                        socio.Nombre = respuesta.GetString("nombre");
+                        socio.Apellido = respuesta.GetString("apellido");
+                        socio.Dni = respuesta.GetString("dni");
+                        socio.Direccion = respuesta.GetString("direccion");
+                        socio.Telefono = respuesta.GetString("telefono");
+                        socio.Email = respuesta.GetString("email");
+                        socio.NumAfiliado = respuesta.GetInt64("num_afiliado");
+                        socio.FechaAlta = DateOnly.FromDateTime(
+                            respuesta.GetDateTime("fecha_alta")
+                        );
+                        return socio;
+                    }
+                    else
                     {
                         return null;
                     }

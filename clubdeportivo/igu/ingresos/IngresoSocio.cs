@@ -101,9 +101,13 @@ namespace clubdeportivo.igu
                             ingresoErr.Show();
                         }
                     }
-                    catch
+                    catch (Exception ex)
                     {
-                        //TODO
+                        if (ex.GetType() == typeof(FormatException))
+                        {
+                            FormatoInvalido formatoInvalido = new FormatoInvalido();
+                            formatoInvalido.ShowDialog();
+                        }
                     }
                 }
             }

@@ -91,6 +91,19 @@ CREATE TABLE IF NOT EXISTS ingresos (
 	FOREIGN KEY (id_persona) REFERENCES personas(id)
 );
 
+CREATE TABLE IF NOT EXISTS carnets(
+	id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    id_persona BIGINT NOT NULL,
+    fecha_emision DATE NOT NULL,
+    fecha_entrega DATE,
+    activo BOOLEAN NOT NULL,
+    FOREIGN KEY (id_persona) REFERENCES personas(id)
+);
+
+INSERT INTO carnets (id, id_persona, fecha_emision, fecha_entrega, activo)
+SELECT 1, 2, '2026-03-04', NULL, FALSE
+WHERE NOT EXISTS (SELECT 1 FROM carnets WHERE id = 1);
+
 DROP PROCEDURE IF EXISTS login;
 CREATE PROCEDURE login(in p_username varchar(50), in p_password varchar(200))
 begin

@@ -107,6 +107,7 @@
             btnEmitirCarnet.TabIndex = 5;
             btnEmitirCarnet.Text = "Carnets";
             btnEmitirCarnet.UseVisualStyleBackColor = false;
+            btnEmitirCarnet.Click += btnEmitirCarnet_Click;
             // 
             // btnVencimientos
             // 

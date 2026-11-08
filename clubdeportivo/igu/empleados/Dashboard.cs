@@ -1,5 +1,6 @@
 ﻿using AltaSocioPrueba;
 using clubdeportivo.config;
+using clubdeportivo.igu.carnets;
 using clubdeportivo.igu.socios;
 using clubdeportivo.model;
 using clubdeportivo.service;
@@ -60,6 +61,12 @@ namespace clubdeportivo.igu
         {
             GrillaSocios grillaSocios = new GrillaSocios();
             grillaSocios.ShowDialog();
+        }
+
+        private void btnEmitirCarnet_Click(object sender, EventArgs e)
+        {
+            CarnetPopUp popUp = new CarnetPopUp();
+            popUp.ShowDialog();
         }
     }
 }
