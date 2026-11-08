@@ -141,7 +141,7 @@ namespace clubdeportivo.igu
         private void btnAceptar_Click_1(object sender, EventArgs e)
         {
             Persona persona = new Persona(txtNombre.Text, txtApellido.Text, txtDni.Text, txtDireccion.Text,
-                txtTelefono.Text, txtEmail.Text);
+                txtTelefono.Text, txtEmail.Text, true);
             using (ConfirmarIngreso confirmar = new ConfirmarIngreso())
             {
                 if (confirmar.ShowDialog() == DialogResult.OK)

@@ -16,7 +16,7 @@ namespace clubdeportivo.repository
             {
                 dbConnection = DBConection.CrearConexion();
                 var query = "SELECT nombre, apellido, dni, direccion, telefono, email, " +
-                    "num_afiliado, fecha_alta, fecha_baja, apto_fisico " +
+                    "num_afiliado, fecha_alta, fecha_baja " +
                     "FROM personas p " +
                     "JOIN socios s ON p.id = s.id " +
                     "WHERE s.num_afiliado = @nroSocio";
@@ -29,22 +29,13 @@ namespace clubdeportivo.repository
                 {
                     if (respuesta.Read())
                     {
-                        var nombre = respuesta.GetString("nombre");
-                        var apellido = respuesta.GetString("apellido");
-                        var dni = respuesta.GetString("dni");
-                        var direccion = respuesta.GetString("direccion");
-                        var telefono = respuesta.GetString("telefono");
-                        var email = respuesta.GetString("email");
-                        var num_afiliado = respuesta.GetInt64("num_afiliado");
-                        var apto_fiscio = respuesta.GetBoolean("apto_fisico");
-                        socio.Nombre = nombre;
-                        socio.Apellido = apellido;
-                        socio.Dni = dni;
-                        socio.Direccion = direccion;
-                        socio.Telefono = telefono;
-                        socio.Email = email;
-                        socio.NumAfiliado = num_afiliado;
-                        socio.AptoFisico = apto_fiscio;
+                        socio.Nombre = respuesta.GetString("nombre");
+                        socio.Apellido = respuesta.GetString("apellido");
+                        socio.Dni = respuesta.GetString("dni");
+                        socio.Direccion = respuesta.GetString("direccion");
+                        socio.Telefono = respuesta.GetString("telefono");
+                        socio.Email = respuesta.GetString("email");
+                        socio.NumAfiliado = respuesta.GetInt64("num_afiliado");
                         return socio;
                     } else
                     {
@@ -73,8 +64,8 @@ namespace clubdeportivo.repository
             {
                 dbConnection = DBConection.CrearConexion();
 
-                var query = "INSERT INTO socios (id, fecha_alta, apto_fisico) VALUES " +
-                            "(@id, @fecha_alta, @apto_fisico);";
+                var query = "INSERT INTO socios (id, fecha_alta) VALUES " +
+                            "(@id, @fecha_alta);";
 
                 MySqlCommand comando = new MySqlCommand(query, dbConnection);
 
@@ -82,7 +73,6 @@ namespace clubdeportivo.repository
 
                 comando.Parameters.AddWithValue("@id", socio.Id);
                 comando.Parameters.Add("@fecha_alta", MySqlDbType.Date).Value = fechaAlta;
-                comando.Parameters.AddWithValue("@apto_fisico", socio.AptoFisico);
 
                 dbConnection.Open();
 
@@ -140,7 +130,7 @@ namespace clubdeportivo.repository
 
                             "s.fecha_alta AS fechaAlta, " +
                             "s.fecha_baja AS fechaBaja, " +
-                            "s.apto_fisico AS aptoFisico, " +
+                            "per.apto_fisico AS aptoFisico, " +
 
                             "um.monto AS montoTotal, " +
                             "COALESCE(tp.total_pagado, 0) AS totalPagado, " +

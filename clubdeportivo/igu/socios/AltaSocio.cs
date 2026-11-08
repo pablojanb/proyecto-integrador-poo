@@ -8,8 +8,10 @@ namespace AltaSocioPrueba
 {
     public partial class AltaSocio : FormBase
     {
+        private SocioService socioService;
         public AltaSocio()
         {
+            socioService = new SocioService();
             InitializeComponent();
             dtpFechaNacimiento.Format = DateTimePickerFormat.Short;
             dtpFechaNacimiento.CustomFormat = "dd/MM/yyyy";
@@ -50,13 +52,13 @@ namespace AltaSocioPrueba
             persona.Direccion = txtDireccion.Text;
             persona.Telefono = txtTelefono.Text;
             persona.Email = txtEmail.Text;
+            persona.AptoFisico = true;
             using (ConfirmarAltaSocio popUpConfirmar = new ConfirmarAltaSocio())
             {
                 if (popUpConfirmar.ShowDialog() == DialogResult.OK)
                 {
                     try
                     {
-                        SocioService socioService = new SocioService();
                         Socio socio = socioService.crearSocio(persona);
                         AltaSocioPopUp popUpAltaDatos = new AltaSocioPopUp(persona.Nombre, persona.Apellido,
                             persona.Dni, socio.NumAfiliado);

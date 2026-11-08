@@ -6,15 +6,16 @@ CREATE TABLE IF NOT EXISTS personas(
     dni VARCHAR(50) UNIQUE,
     direccion VARCHAR(150),
     telefono VARCHAR(50),
-    email VARCHAR(50)
+    email VARCHAR(50),
+    apto_fisico BOOLEAN NOT NULL
 );
 
-INSERT INTO personas (id, nombre, apellido, dni, direccion, telefono, email)
-SELECT 1, 'Juan', 'Perez', '43950994', 'Av. Santa Fe 453', '1155938500', 'juanperez@gmail.com'
+INSERT INTO personas (id, nombre, apellido, dni, direccion, telefono, email, apto_fisico)
+SELECT 1, 'Juan', 'Perez', '43950994', 'Av. Santa Fe 453', '1155938500', 'juanperez@gmail.com', TRUE
 WHERE NOT EXISTS (SELECT 1 FROM personas WHERE email = 'juanperez@gmail.com');
 
-INSERT INTO personas (id, nombre, apellido, dni, direccion, telefono, email)
-SELECT 2, 'Lucia', 'Torres', '42556336', 'Congreso 221', '1154764433', 'luciatorres@gmail.com'
+INSERT INTO personas (id, nombre, apellido, dni, direccion, telefono, email, apto_fisico)
+SELECT 2, 'Lucia', 'Torres', '42556336', 'Congreso 221', '1154764433', 'luciatorres@gmail.com', TRUE
 WHERE NOT EXISTS (SELECT 1 FROM personas WHERE email = 'luciatorres@gmail.com');
 
 CREATE TABLE IF NOT EXISTS empleados_administrativos(
@@ -36,12 +37,11 @@ CREATE TABLE IF NOT EXISTS socios(
     num_afiliado BIGINT AUTO_INCREMENT UNIQUE,
     fecha_alta DATE NOT NULL,
     fecha_baja DATE NULL,
-	apto_fisico BOOLEAN NOT NULL,
     FOREIGN KEY (id) REFERENCES personas(id)
 );
 
-INSERT INTO socios (id, fecha_alta, apto_fisico)
-SELECT 2, '2026-03-04', TRUE WHERE NOT EXISTS (SELECT 1 FROM socios WHERE id = 2);
+INSERT INTO socios (id, fecha_alta)
+SELECT 2, '2026-03-04' WHERE NOT EXISTS (SELECT 1 FROM socios WHERE id = 2);
 
 CREATE TABLE IF NOT EXISTS membresias (
 	id BIGINT PRIMARY KEY AUTO_INCREMENT,

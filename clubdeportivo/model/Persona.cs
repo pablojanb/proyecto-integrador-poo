@@ -11,9 +11,11 @@ namespace clubdeportivo.model
         private string telefono;
         private string email;
 
+        private Boolean aptoFisico;
+
         public Persona() { }
         public Persona(string nombre, string apellido, string dni, string direccion, string telefono, 
-            string email)
+            string email, bool aptoFisico)
         {
             Nombre = nombre;
             Apellido = apellido;
@@ -21,6 +23,7 @@ namespace clubdeportivo.model
             Direccion = direccion;
             Telefono = telefono;
             Email = email;
+            AptoFisico = aptoFisico;
         }
 
         public long Id { get => id; set => id = value; }
@@ -30,5 +33,6 @@ namespace clubdeportivo.model
         public string Direccion { get => direccion; set => direccion = value; }
         public string Telefono { get => telefono; set => telefono = value; }
         public string Email { get => email; set => email = value; }
+        public bool AptoFisico { get => aptoFisico; set => aptoFisico = value; }
     }
 }

@@ -14,7 +14,7 @@ namespace clubdeportivo.repository
             try
             {
                 dbConnection = DBConection.CrearConexion();
-                var query = "SELECT id, nombre, apellido, dni, direccion, telefono, email " +
+                var query = "SELECT id, nombre, apellido, dni, direccion, telefono, email, apto_fisico " +
                     "FROM personas p " +
                     "WHERE p.dni = @dni";
                 MySqlCommand comando = new MySqlCommand(query, dbConnection);
@@ -26,13 +26,14 @@ namespace clubdeportivo.repository
                 {
                     if (respuesta.Read())
                     {
-                        persona.Id = respuesta.GetInt64("id"); ;
-                        persona.Nombre = respuesta.GetString("nombre"); ;
-                        persona.Apellido = respuesta.GetString("apellido"); ;
-                        persona.Dni = respuesta.GetString("dni"); ;
-                        persona.Direccion = respuesta.GetString("direccion"); ;
-                        persona.Telefono = respuesta.GetString("telefono"); ;
-                        persona.Email = respuesta.GetString("email"); ;
+                        persona.Id = respuesta.GetInt64("id");
+                        persona.Nombre = respuesta.GetString("nombre");
+                        persona.Apellido = respuesta.GetString("apellido");
+                        persona.Dni = respuesta.GetString("dni");
+                        persona.Direccion = respuesta.GetString("direccion");
+                        persona.Telefono = respuesta.GetString("telefono");
+                        persona.Email = respuesta.GetString("email");
+                        persona.AptoFisico = respuesta.GetBoolean("apto_fisico");
                         return persona;
                     }
                     else
@@ -63,7 +64,7 @@ namespace clubdeportivo.repository
             try
             {
                 dbConnection = DBConection.CrearConexion();
-                var query = "SELECT p.id, nombre, apellido, dni, direccion, telefono, email " +
+                var query = "SELECT p.id, nombre, apellido, dni, direccion, telefono, email, apto_fisico " +
                     "FROM personas p " +
                     "JOIN socios s ON p.id = s.id " +
                     "WHERE s.num_afiliado = @nroSocio";
@@ -76,20 +77,14 @@ namespace clubdeportivo.repository
                 {
                     if (respuesta.Read())
                     {
-                        var id = respuesta.GetInt64("id");
-                        var nombre = respuesta.GetString("nombre");
-                        var apellido = respuesta.GetString("apellido");
-                        var dni = respuesta.GetString("dni");
-                        var direccion = respuesta.GetString("direccion");
-                        var telefono = respuesta.GetString("telefono");
-                        var email = respuesta.GetString("email");
-                        persona.Id = id;
-                        persona.Nombre = nombre;
-                        persona.Apellido = apellido;
-                        persona.Dni = dni;
-                        persona.Direccion = direccion;
-                        persona.Telefono = telefono;
-                        persona.Email = email;
+                        persona.Id = respuesta.GetInt64("id");
+                        persona.Nombre = respuesta.GetString("nombre");
+                        persona.Apellido = respuesta.GetString("apellido");
+                        persona.Dni = respuesta.GetString("dni");
+                        persona.Direccion = respuesta.GetString("direccion");
+                        persona.Telefono = respuesta.GetString("telefono");
+                        persona.Email = respuesta.GetString("email");
+                        persona.AptoFisico = respuesta.GetBoolean("apto_fisico");
                         return persona;
                     }
                     else
@@ -119,7 +114,7 @@ namespace clubdeportivo.repository
             try
             {
                 dbConnection = DBConection.CrearConexion();
-                var query = "SELECT p.id, nombre, apellido, dni, direccion, telefono, email " +
+                var query = "SELECT p.id, nombre, apellido, dni, direccion, telefono, email, apto_fisico " +
                     "FROM personas p " +
                     "JOIN empleados_administrativos ea ON p.id = ea.id " +
                     "WHERE ea.num_legajo = @num_legajo";
@@ -132,20 +127,14 @@ namespace clubdeportivo.repository
                 {
                     if (respuesta.Read())
                     {
-                        var id = respuesta.GetInt64("id");
-                        var nombre = respuesta.GetString("nombre");
-                        var apellido = respuesta.GetString("apellido");
-                        var dni = respuesta.GetString("dni");
-                        var direccion = respuesta.GetString("direccion");
-                        var telefono = respuesta.GetString("telefono");
-                        var email = respuesta.GetString("email");
-                        persona.Id = id;
-                        persona.Nombre = nombre;
-                        persona.Apellido = apellido;
-                        persona.Dni = dni;
-                        persona.Direccion = direccion;
-                        persona.Telefono = telefono;
-                        persona.Email = email;
+                        persona.Id = respuesta.GetInt64("id");
+                        persona.Nombre = respuesta.GetString("nombre");
+                        persona.Apellido = respuesta.GetString("apellido");
+                        persona.Dni = respuesta.GetString("dni");
+                        persona.Direccion = respuesta.GetString("direccion");
+                        persona.Telefono = respuesta.GetString("telefono");
+                        persona.Email = respuesta.GetString("email");
+                        persona.AptoFisico = respuesta.GetBoolean("apto_fisico");
                         return persona;
                     }
                     else
@@ -175,8 +164,8 @@ namespace clubdeportivo.repository
             try
             {
                 dbConnection = DBConection.CrearConexion();
-                var query = "INSERT INTO personas (nombre, apellido, dni, direccion, telefono, email) VALUES " +
-                    "(@nombre, @apellido, @dni, @direccion, @telefono, @email); " +
+                var query = "INSERT INTO personas (nombre, apellido, dni, direccion, telefono, email, apto_fisico) VALUES " +
+                    "(@nombre, @apellido, @dni, @direccion, @telefono, @email, @apto_fisico); " +
 
                     "SELECT * " +
                     "FROM personas " +
@@ -188,6 +177,7 @@ namespace clubdeportivo.repository
                 comando.Parameters.AddWithValue("@direccion", persona.Direccion);
                 comando.Parameters.AddWithValue("@telefono", persona.Telefono);
                 comando.Parameters.AddWithValue("@email", persona.Email);
+                comando.Parameters.AddWithValue("@apto_fisico", persona.AptoFisico);
                 dbConnection.Open();
 
                 using (MySqlDataReader respuesta = comando.ExecuteReader())
@@ -202,7 +192,8 @@ namespace clubdeportivo.repository
                             Dni = respuesta.GetString("dni"),
                             Direccion = respuesta.GetString("direccion"),
                             Telefono = respuesta.GetString("telefono"),
-                            Email = respuesta.GetString("email")
+                            Email = respuesta.GetString("email"),
+                            AptoFisico = respuesta.GetBoolean("apto_fisico")
                         };
 
                         return personaGuardada;
@@ -234,7 +225,7 @@ namespace clubdeportivo.repository
             try
             {
                 dbConnection = DBConection.CrearConexion();
-                var query = "SELECT p.id, nombre, apellido, dni, direccion, telefono, email " +
+                var query = "SELECT p.id, nombre, apellido, dni, direccion, telefono, email, apto_fisico " +
                     "FROM personas p " +
                     "WHERE p.id = @id";
                 MySqlCommand comando = new MySqlCommand(query, dbConnection);
@@ -246,20 +237,14 @@ namespace clubdeportivo.repository
                 {
                     if (respuesta.Read())
                     {
-                        var id = respuesta.GetInt64("id");
-                        var nombre = respuesta.GetString("nombre");
-                        var apellido = respuesta.GetString("apellido");
-                        var dni = respuesta.GetString("dni");
-                        var direccion = respuesta.GetString("direccion");
-                        var telefono = respuesta.GetString("telefono");
-                        var email = respuesta.GetString("email");
-                        persona.Id = id;
-                        persona.Nombre = nombre;
-                        persona.Apellido = apellido;
-                        persona.Dni = dni;
-                        persona.Direccion = direccion;
-                        persona.Telefono = telefono;
-                        persona.Email = email;
+                        persona.Id = respuesta.GetInt64("id");
+                        persona.Nombre = respuesta.GetString("nombre");
+                        persona.Apellido = respuesta.GetString("apellido");
+                        persona.Dni = respuesta.GetString("dni");
+                        persona.Direccion = respuesta.GetString("direccion");
+                        persona.Telefono = respuesta.GetString("telefono");
+                        persona.Email = respuesta.GetString("email");
+                        persona.AptoFisico = respuesta.GetBoolean("apto_fisico");
                         return persona;
                     }
                     else
