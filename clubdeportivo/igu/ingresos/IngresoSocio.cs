@@ -1,18 +1,15 @@
 ﻿using clubdeportivo.igu.ingresos;
 using clubdeportivo.model;
 using clubdeportivo.service;
-using System.Diagnostics;
 
 namespace clubdeportivo.igu
 {
     public partial class IngresoSocio : FormBase
     {
-        private SocioService socioService;
         private PersonaService personaService;
         private IngresoService ingresoService;
         public IngresoSocio()
         {
-            socioService = new SocioService();
             personaService = new PersonaService();
             ingresoService = new IngresoService();
             InitializeComponent();
