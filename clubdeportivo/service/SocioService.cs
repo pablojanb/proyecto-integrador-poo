@@ -44,5 +44,10 @@ namespace clubdeportivo.service
         {
             return repository.obtenerTodosConVencimientoDiaActual();
         }
+
+        public Boolean tieneUltimaMembresiaVencida(string dni)
+        {
+            return repository.tieneUltimaMembresiaVencida(dni);
+        }
     }
 }

@@ -388,5 +388,54 @@ namespace clubdeportivo.repository
                 }
             }
         }
+
+        public bool tieneUltimaMembresiaVencida(string dni)
+        {
+            MySqlConnection dbConnection = null;
+
+            try
+            {
+                dbConnection = DBConection.CrearConexion();
+
+                string query =
+                    "WITH ultima_membresia AS ( " +
+                        "SELECT " +
+                            "m.fecha_vencimiento, " +
+                            "ROW_NUMBER() OVER ( " +
+                                "PARTITION BY m.id_socio " +
+                                "ORDER BY m.periodo DESC, m.id DESC " +
+                            ") AS rn " +
+                        "FROM membresias m " +
+                        "INNER JOIN socios s ON s.id = m.id_socio " +
+                        "INNER JOIN personas p ON p.id = s.id " +
+                        "WHERE p.dni = @dni " +
+                    ") " +
+                    "SELECT EXISTS ( " +
+                        "SELECT 1 " +
+                        "FROM ultima_membresia " +
+                        "WHERE rn = 1 " +
+                        "AND fecha_vencimiento <= CURDATE() " +
+                    ");";
+
+                MySqlCommand comando = new MySqlCommand(query, dbConnection);
+                comando.Parameters.AddWithValue("@dni", dni);
+
+                dbConnection.Open();
+
+                return Convert.ToBoolean(comando.ExecuteScalar());
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine($"MySQL Error {ex.Number}: {ex.Message}");
+                throw;
+            }
+            finally
+            {
+                if (dbConnection != null && dbConnection.State == ConnectionState.Open)
+                {
+                    dbConnection.Close();
+                }
+            }
+        }
     }
 }

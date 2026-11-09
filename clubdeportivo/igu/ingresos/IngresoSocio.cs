@@ -1,17 +1,20 @@
 ﻿using clubdeportivo.igu.ingresos;
 using clubdeportivo.model;
 using clubdeportivo.service;
+using System.Diagnostics;
 
 namespace clubdeportivo.igu
 {
     public partial class IngresoSocio : FormBase
     {
         private PersonaService personaService;
+        private SocioService socioService;
         private IngresoService ingresoService;
         public IngresoSocio()
         {
             personaService = new PersonaService();
             ingresoService = new IngresoService();
+            socioService = new SocioService();
             InitializeComponent();
             cmbDni.SelectedIndex = 0;
             cmbIngreso.SelectedIndex = 0;
@@ -62,6 +65,13 @@ namespace clubdeportivo.igu
                         }
                         if (persona != null)
                         {
+                            Boolean tieneDeuda = socioService.tieneUltimaMembresiaVencida(persona.Dni);
+                            if (tieneDeuda)
+                            {
+                                IngresoDeuda ingresoDeuda = new IngresoDeuda();
+                                ingresoDeuda.ShowDialog();
+                                this.Close();
+                            }
                             Ingreso ingreso = ingresoService.obtenerUltimoIngresoPorPersonaId(persona.Id);
                             if (registro == "Ingreso")
                             {
