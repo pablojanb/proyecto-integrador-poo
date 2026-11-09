@@ -25,6 +25,12 @@
     <Compile Update="igu\ingresos\IngresoDeuda.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="igu\pagos\PagoExitoso.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="igu\pagos\PagosPopUp.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="igu\SesionTimer.cs">
       <SubType>Form</SubType>
     </Compile>

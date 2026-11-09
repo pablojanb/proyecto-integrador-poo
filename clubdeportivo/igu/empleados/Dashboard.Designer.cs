@@ -143,6 +143,7 @@
             btnPagos.TabIndex = 8;
             btnPagos.Text = "Pagos";
             btnPagos.UseVisualStyleBackColor = false;
+            btnPagos.Click += btnPagos_Click;
             // 
             // Dashboard
             // 

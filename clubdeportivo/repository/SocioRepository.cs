@@ -439,5 +439,116 @@ namespace clubdeportivo.repository
                 }
             }
         }
+
+        public Boolean pagarMembresia(long idSocio, decimal monto)
+        {
+            MySqlConnection dbConnection = null;
+
+            try
+            {
+                dbConnection = DBConection.CrearConexion();
+
+                string query =
+                    "INSERT INTO pagos (id_membresia, monto) " +
+                    "SELECT id, @monto " +
+                    "FROM ( " +
+                        "SELECT " +
+                            "m.id, " +
+                            "ROW_NUMBER() OVER ( " +
+                                "ORDER BY m.periodo DESC, m.id DESC " +
+                            ") AS rn " +
+                        "FROM membresias m " +
+                        "WHERE m.id_socio = @idSocio " +
+                    ") AS ultima " +
+                    "WHERE rn = 1;";
+
+                MySqlCommand comando = new MySqlCommand(query, dbConnection);
+
+                comando.Parameters.AddWithValue("@idSocio", idSocio);
+                comando.Parameters.AddWithValue("@monto", monto);
+
+                dbConnection.Open();
+
+                int filasAfectadas = comando.ExecuteNonQuery();
+
+                return filasAfectadas > 0;
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine($"MySQL Error {ex.Number}: {ex.Message}");
+                throw;
+            }
+            finally
+            {
+                if (dbConnection != null && dbConnection.State == ConnectionState.Open)
+                {
+                    dbConnection.Close();
+                }
+            }
+        }
+
+        public decimal calcularDeudaSocio(long idSocio)
+        {
+            MySqlConnection dbConnection = null;
+
+            try
+            {
+                dbConnection = DBConection.CrearConexion();
+
+                string query =
+                    "WITH ultima_membresia AS ( " +
+                        "SELECT " +
+                            "m.*, " +
+                            "ROW_NUMBER() OVER ( " +
+                                "PARTITION BY m.id_socio " +
+                                "ORDER BY m.periodo DESC, m.id DESC " +
+                            ") AS rn " +
+                        "FROM membresias m " +
+                        "WHERE m.id_socio = @idSocio " +
+                    "), " +
+                    "total_pagos AS ( " +
+                        "SELECT " +
+                            "p.id_membresia, " +
+                            "SUM(p.monto) AS total_pagado " +
+                        "FROM pagos p " +
+                        "INNER JOIN ultima_membresia um " +
+                            "ON um.id = p.id_membresia " +
+                            "WHERE um.rn = 1 " +
+                        "GROUP BY p.id_membresia " +
+                    ") " +
+                    "SELECT " +
+                        "COALESCE( " +
+                            "um.monto - COALESCE(tp.total_pagado, 0), " +
+                            "0 " +
+                        ") AS deuda " +
+                    "FROM ultima_membresia um " +
+                    "LEFT JOIN total_pagos tp " +
+                        "ON tp.id_membresia = um.id " +
+                    "WHERE um.rn = 1;";
+
+                MySqlCommand comando = new MySqlCommand(query, dbConnection);
+                comando.Parameters.AddWithValue("@idSocio", idSocio);
+
+                dbConnection.Open();
+
+                object resultado = comando.ExecuteScalar();
+
+                return resultado == null || resultado == DBNull.Value
+                    ? 0
+                    : Convert.ToDecimal(resultado);
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine($"MySQL Error {ex.Number}: {ex.Message}");
+                throw;
+            }
+            finally
+            {
+                if (dbConnection != null && dbConnection.State == ConnectionState.Open)
+                {
+                    dbConnection.Close();
+                }
+            }
+        }
     }
 }

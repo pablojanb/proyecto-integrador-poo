@@ -1,6 +1,7 @@
 ﻿using AltaSocioPrueba;
 using clubdeportivo.config;
 using clubdeportivo.igu.carnets;
+using clubdeportivo.igu.pagos;
 using clubdeportivo.igu.socios;
 using clubdeportivo.model;
 using clubdeportivo.service;
@@ -66,6 +67,12 @@ namespace clubdeportivo.igu
         private void btnEmitirCarnet_Click(object sender, EventArgs e)
         {
             CarnetPopUp popUp = new CarnetPopUp();
+            popUp.ShowDialog();
+        }
+
+        private void btnPagos_Click(object sender, EventArgs e)
+        {
+            PagosPopUp popUp = new PagosPopUp();
             popUp.ShowDialog();
         }
     }
