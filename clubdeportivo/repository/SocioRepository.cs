@@ -16,7 +16,7 @@ namespace clubdeportivo.repository
             try
             {
                 dbConnection = DBConection.CrearConexion();
-                var query = "SELECT nombre, apellido, dni, direccion, telefono, email, " +
+                var query = "SELECT s.id, nombre, apellido, dni, direccion, telefono, email, " +
                     "num_afiliado, fecha_alta, fecha_baja " +
                     "FROM personas p " +
                     "JOIN socios s ON p.id = s.id " +
@@ -30,6 +30,7 @@ namespace clubdeportivo.repository
                 {
                     if (respuesta.Read())
                     {
+                        socio.Id = respuesta.GetInt64("id");
                         socio.Nombre = respuesta.GetString("nombre");
                         socio.Apellido = respuesta.GetString("apellido");
                         socio.Dni = respuesta.GetString("dni");
@@ -68,7 +69,7 @@ namespace clubdeportivo.repository
             try
             {
                 dbConnection = DBConection.CrearConexion();
-                var query = "SELECT nombre, apellido, dni, direccion, telefono, email, " +
+                var query = "SELECT s.id, nombre, apellido, dni, direccion, telefono, email, " +
                     "num_afiliado, fecha_alta, fecha_baja " +
                     "FROM personas p " +
                     "JOIN socios s ON p.id = s.id " +
@@ -82,6 +83,7 @@ namespace clubdeportivo.repository
                 {
                     if (respuesta.Read())
                     {
+                        socio.Id = respuesta.GetInt64("id");
                         socio.Nombre = respuesta.GetString("nombre");
                         socio.Apellido = respuesta.GetString("apellido");
                         socio.Dni = respuesta.GetString("dni");

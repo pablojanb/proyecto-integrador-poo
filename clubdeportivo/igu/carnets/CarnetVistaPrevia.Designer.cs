@@ -31,12 +31,12 @@
             btnCancelar = new Button();
             btnEntregar = new Button();
             panel1 = new Panel();
-            lblTituloCarnet = new Label();
-            lblNombre = new Label();
-            lblApellido = new Label();
-            lblDni = new Label();
-            lblNumAfiliado = new Label();
             lblFechaAlta = new Label();
+            lblNumAfiliado = new Label();
+            lblDni = new Label();
+            lblApellido = new Label();
+            lblNombre = new Label();
+            lblTituloCarnet = new Label();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -62,6 +62,7 @@
             btnEntregar.TabIndex = 15;
             btnEntregar.Text = "Entregar";
             btnEntregar.UseVisualStyleBackColor = false;
+            btnEntregar.Click += btnEntregar_Click;
             // 
             // panel1
             // 
@@ -77,45 +78,15 @@
             panel1.Size = new Size(553, 256);
             panel1.TabIndex = 17;
             // 
-            // lblTituloCarnet
+            // lblFechaAlta
             // 
-            lblTituloCarnet.AutoSize = true;
-            lblTituloCarnet.Font = new Font("Segoe UI", 16F);
-            lblTituloCarnet.Location = new Point(154, 24);
-            lblTituloCarnet.Name = "lblTituloCarnet";
-            lblTituloCarnet.Size = new Size(276, 37);
-            lblTituloCarnet.TabIndex = 0;
-            lblTituloCarnet.Text = "Club deportivo del 29";
-            // 
-            // lblNombre
-            // 
-            lblNombre.AutoSize = true;
-            lblNombre.Font = new Font("Segoe UI", 12F);
-            lblNombre.Location = new Point(31, 74);
-            lblNombre.Name = "lblNombre";
-            lblNombre.Size = new Size(89, 28);
-            lblNombre.TabIndex = 1;
-            lblNombre.Text = "Nombre:";
-            // 
-            // lblApellido
-            // 
-            lblApellido.AutoSize = true;
-            lblApellido.Font = new Font("Segoe UI", 12F);
-            lblApellido.Location = new Point(283, 74);
-            lblApellido.Name = "lblApellido";
-            lblApellido.Size = new Size(90, 28);
-            lblApellido.TabIndex = 2;
-            lblApellido.Text = "Apellido:";
-            // 
-            // lblDni
-            // 
-            lblDni.AutoSize = true;
-            lblDni.Font = new Font("Segoe UI", 12F);
-            lblDni.Location = new Point(31, 128);
-            lblDni.Name = "lblDni";
-            lblDni.Size = new Size(50, 28);
-            lblDni.TabIndex = 3;
-            lblDni.Text = "DNI:";
+            lblFechaAlta.AutoSize = true;
+            lblFechaAlta.Font = new Font("Segoe UI", 12F);
+            lblFechaAlta.Location = new Point(31, 182);
+            lblFechaAlta.Name = "lblFechaAlta";
+            lblFechaAlta.Size = new Size(103, 28);
+            lblFechaAlta.TabIndex = 5;
+            lblFechaAlta.Text = "Fecha alta:";
             // 
             // lblNumAfiliado
             // 
@@ -127,15 +98,45 @@
             lblNumAfiliado.TabIndex = 4;
             lblNumAfiliado.Text = "N° Afiliado:";
             // 
-            // lblFechaAlta
+            // lblDni
             // 
-            lblFechaAlta.AutoSize = true;
-            lblFechaAlta.Font = new Font("Segoe UI", 12F);
-            lblFechaAlta.Location = new Point(31, 182);
-            lblFechaAlta.Name = "lblFechaAlta";
-            lblFechaAlta.Size = new Size(103, 28);
-            lblFechaAlta.TabIndex = 5;
-            lblFechaAlta.Text = "Fecha alta:";
+            lblDni.AutoSize = true;
+            lblDni.Font = new Font("Segoe UI", 12F);
+            lblDni.Location = new Point(31, 128);
+            lblDni.Name = "lblDni";
+            lblDni.Size = new Size(50, 28);
+            lblDni.TabIndex = 3;
+            lblDni.Text = "DNI:";
+            // 
+            // lblApellido
+            // 
+            lblApellido.AutoSize = true;
+            lblApellido.Font = new Font("Segoe UI", 12F);
+            lblApellido.Location = new Point(283, 74);
+            lblApellido.Name = "lblApellido";
+            lblApellido.Size = new Size(90, 28);
+            lblApellido.TabIndex = 2;
+            lblApellido.Text = "Apellido:";
+            // 
+            // lblNombre
+            // 
+            lblNombre.AutoSize = true;
+            lblNombre.Font = new Font("Segoe UI", 12F);
+            lblNombre.Location = new Point(31, 74);
+            lblNombre.Name = "lblNombre";
+            lblNombre.Size = new Size(89, 28);
+            lblNombre.TabIndex = 1;
+            lblNombre.Text = "Nombre:";
+            // 
+            // lblTituloCarnet
+            // 
+            lblTituloCarnet.AutoSize = true;
+            lblTituloCarnet.Font = new Font("Segoe UI", 16F);
+            lblTituloCarnet.Location = new Point(154, 24);
+            lblTituloCarnet.Name = "lblTituloCarnet";
+            lblTituloCarnet.Size = new Size(276, 37);
+            lblTituloCarnet.TabIndex = 0;
+            lblTituloCarnet.Text = "Club deportivo del 29";
             // 
             // CarnetVistaPrevia
             // 

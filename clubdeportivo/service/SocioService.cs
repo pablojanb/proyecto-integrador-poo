@@ -1,8 +1,6 @@
-﻿
-using clubdeportivo.dto;
+﻿using clubdeportivo.dto;
 using clubdeportivo.model;
 using clubdeportivo.repository;
-using System.Diagnostics;
 
 namespace clubdeportivo.service
 {

@@ -1,0 +1,76 @@
+﻿namespace clubdeportivo.igu.carnets
+{
+    partial class CarnetEntregadoPopUp
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            btnAceptar = new Button();
+            lblTitle = new Label();
+            SuspendLayout();
+            // 
+            // btnAceptar
+            // 
+            btnAceptar.BackColor = Color.Black;
+            btnAceptar.ForeColor = Color.White;
+            btnAceptar.Location = new Point(167, 102);
+            btnAceptar.Name = "btnAceptar";
+            btnAceptar.Size = new Size(164, 41);
+            btnAceptar.TabIndex = 20;
+            btnAceptar.Text = "Aceptar";
+            btnAceptar.UseVisualStyleBackColor = false;
+            btnAceptar.Click += btnAceptar_Click;
+            // 
+            // lblTitle
+            // 
+            lblTitle.AutoSize = true;
+            lblTitle.Font = new Font("Segoe UI", 20F);
+            lblTitle.Location = new Point(116, 31);
+            lblTitle.Name = "lblTitle";
+            lblTitle.Size = new Size(284, 46);
+            lblTitle.TabIndex = 19;
+            lblTitle.Text = "Carnet entregado";
+            // 
+            // CarnetEntregadoPopUp
+            // 
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(522, 189);
+            Controls.Add(btnAceptar);
+            Controls.Add(lblTitle);
+            Name = "CarnetEntregadoPopUp";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Carnet entregado";
+            ResumeLayout(false);
+            PerformLayout();
+        }
+
+        #endregion
+
+        private Button btnAceptar;
+        private Label lblTitle;
+    }
+}

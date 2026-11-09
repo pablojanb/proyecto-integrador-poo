@@ -1,4 +1,6 @@
 ﻿
+using System.Diagnostics;
+
 namespace clubdeportivo.model
 {
     internal class Carnet
@@ -12,7 +14,8 @@ namespace clubdeportivo.model
         public Carnet(long personaId)
         {
             PersonaId = personaId;
-            FechaEmision = new DateOnly();
+            FechaEmision = DateOnly.FromDateTime(DateTime.Today);
+            Activo = false;
         }
 
         public long Id { get => id; set => id = value; }

@@ -9,8 +9,10 @@ namespace AltaSocioPrueba
     public partial class AltaSocio : FormBase
     {
         private SocioService socioService;
+        private CarnetService carnetService;
         public AltaSocio()
         {
+            carnetService = new CarnetService();
             socioService = new SocioService();
             InitializeComponent();
             dtpFechaNacimiento.Format = DateTimePickerFormat.Short;
@@ -60,12 +62,18 @@ namespace AltaSocioPrueba
                     try
                     {
                         Socio socio = socioService.crearSocio(persona);
-                        AltaSocioPopUp popUpAltaDatos = new AltaSocioPopUp(persona.Nombre, persona.Apellido,
-                            persona.Dni, socio.NumAfiliado);
-                        if (popUpAltaDatos.ShowDialog() == DialogResult.OK)
+                        if (socio != null)
                         {
-                            this.Close();
+                            Carnet carnet = new Carnet(socio.Id);
+                            carnetService.crearCarnet(carnet);
+                            AltaSocioPopUp popUpAltaDatos = new AltaSocioPopUp(persona.Nombre, persona.Apellido,
+                            persona.Dni, socio.NumAfiliado);
+                            if (popUpAltaDatos.ShowDialog() == DialogResult.OK)
+                            {
+                                this.Close();
+                            }
                         }
+                        
                     }
                     catch (Exception ex)
                     {

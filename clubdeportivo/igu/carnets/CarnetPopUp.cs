@@ -45,6 +45,7 @@ namespace clubdeportivo.igu.carnets
                 {
                     CarnetVistaPrevia vistaPrevia = new CarnetVistaPrevia(socio);
                     vistaPrevia.ShowDialog();
+                    this.Close();
                 }
                 else
                 {
