@@ -18,7 +18,8 @@ namespace clubdeportivo.igu.socios
 
         public void cargarDatos()
         {
-            sociosDto = socioService.obtenerTodosConVencimiento();
+            btnFiltroVenceHoy.BackColor = Color.Gray;
+            sociosDto = socioService.obtenerTodosConVencimientoDiaActual();
         }
 
         public void configGrilla()
@@ -50,6 +51,22 @@ namespace clubdeportivo.igu.socios
         private void btnVolver_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnFiltroTodos_Click(object sender, EventArgs e)
+        {
+            btnFiltroTodos.BackColor = Color.Gray;
+            btnFiltroVenceHoy.BackColor = Color.Black;
+            sociosDto = socioService.obtenerTodosConVencimiento();
+            gridSocios.DataSource = sociosDto;
+        }
+
+        private void btnFiltroVenceHoy_Click_1(object sender, EventArgs e)
+        {
+            btnFiltroVenceHoy.BackColor = Color.Gray;
+            btnFiltroTodos.BackColor = Color.Black;
+            sociosDto = socioService.obtenerTodosConVencimientoDiaActual();
+            gridSocios.DataSource = sociosDto;
         }
     }
 }

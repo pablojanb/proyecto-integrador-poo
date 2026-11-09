@@ -18,6 +18,10 @@ INSERT INTO personas (id, nombre, apellido, dni, direccion, telefono, email, apt
 SELECT 2, 'Lucia', 'Torres', '42556336', 'Congreso 221', '1154764433', 'luciatorres@gmail.com', TRUE
 WHERE NOT EXISTS (SELECT 1 FROM personas WHERE email = 'luciatorres@gmail.com');
 
+INSERT INTO personas (id, nombre, apellido, dni, direccion, telefono, email, apto_fisico)
+SELECT 3, 'Marta', 'González', '39755869', 'Rivadavia 554', '1155937584', 'martag@gmail.com', TRUE
+WHERE NOT EXISTS (SELECT 1 FROM personas WHERE email = 'martag@gmail.com');
+
 CREATE TABLE IF NOT EXISTS empleados_administrativos(
 	id BIGINT PRIMARY KEY,
     num_legajo BIGINT AUTO_INCREMENT UNIQUE,
@@ -43,6 +47,9 @@ CREATE TABLE IF NOT EXISTS socios(
 INSERT INTO socios (id, fecha_alta)
 SELECT 2, '2026-03-04' WHERE NOT EXISTS (SELECT 1 FROM socios WHERE id = 2);
 
+INSERT INTO socios (id, fecha_alta)
+SELECT 3, '2026-07-17' WHERE NOT EXISTS (SELECT 1 FROM socios WHERE id = 3);
+
 CREATE TABLE IF NOT EXISTS membresias (
 	id BIGINT PRIMARY KEY AUTO_INCREMENT,
     id_socio BIGINT,
@@ -54,6 +61,9 @@ CREATE TABLE IF NOT EXISTS membresias (
 
 INSERT INTO membresias (id_socio, monto, periodo, fecha_vencimiento)
 SELECT 2, 30000.00, '2026-10-01', '2026-10-5' WHERE NOT EXISTS (SELECT 1 FROM membresias WHERE id_socio = 2);
+
+INSERT INTO membresias (id_socio, monto, periodo, fecha_vencimiento)
+SELECT 3, 30000.00, '2026-11-01', '2026-11-10' WHERE NOT EXISTS (SELECT 1 FROM membresias WHERE id_socio = 3);
 
 CREATE TABLE IF NOT EXISTS medios_pago (
 	id BIGINT PRIMARY KEY AUTO_INCREMENT,

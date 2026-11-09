@@ -2,6 +2,7 @@
 using clubdeportivo.dto;
 using clubdeportivo.model;
 using clubdeportivo.repository;
+using System.Diagnostics;
 
 namespace clubdeportivo.service
 {
@@ -37,6 +38,11 @@ namespace clubdeportivo.service
         public List<SocioGrillaDTO> obtenerTodosConVencimiento()
         {
             return repository.obtenerTodosConVencimiento();
+        }
+
+        public List<SocioGrillaDTO> obtenerTodosConVencimientoDiaActual()
+        {
+            return repository.obtenerTodosConVencimientoDiaActual();
         }
     }
 }

@@ -31,7 +31,6 @@
             gridSocios = new DataGridView();
             lblTitulo = new Label();
             btnFiltroTodos = new Button();
-            btnFiltroVencidos = new Button();
             btnFiltroVenceHoy = new Button();
             btnVolver = new Button();
             ((System.ComponentModel.ISupportInitialize)gridSocios).BeginInit();
@@ -61,34 +60,25 @@
             // 
             btnFiltroTodos.BackColor = Color.Black;
             btnFiltroTodos.ForeColor = Color.White;
-            btnFiltroTodos.Location = new Point(21, 71);
+            btnFiltroTodos.Location = new Point(242, 69);
             btnFiltroTodos.Name = "btnFiltroTodos";
             btnFiltroTodos.Size = new Size(206, 41);
             btnFiltroTodos.TabIndex = 22;
             btnFiltroTodos.Text = "Todos";
             btnFiltroTodos.UseVisualStyleBackColor = false;
-            // 
-            // btnFiltroVencidos
-            // 
-            btnFiltroVencidos.BackColor = Color.Black;
-            btnFiltroVencidos.ForeColor = Color.White;
-            btnFiltroVencidos.Location = new Point(247, 71);
-            btnFiltroVencidos.Name = "btnFiltroVencidos";
-            btnFiltroVencidos.Size = new Size(206, 41);
-            btnFiltroVencidos.TabIndex = 23;
-            btnFiltroVencidos.Text = "Vencidos";
-            btnFiltroVencidos.UseVisualStyleBackColor = false;
+            btnFiltroTodos.Click += btnFiltroTodos_Click;
             // 
             // btnFiltroVenceHoy
             // 
             btnFiltroVenceHoy.BackColor = Color.Black;
             btnFiltroVenceHoy.ForeColor = Color.White;
-            btnFiltroVenceHoy.Location = new Point(474, 71);
+            btnFiltroVenceHoy.Location = new Point(21, 69);
             btnFiltroVenceHoy.Name = "btnFiltroVenceHoy";
             btnFiltroVenceHoy.Size = new Size(206, 41);
             btnFiltroVenceHoy.TabIndex = 24;
             btnFiltroVenceHoy.Text = "Vence hoy";
             btnFiltroVenceHoy.UseVisualStyleBackColor = false;
+            btnFiltroVenceHoy.Click += btnFiltroVenceHoy_Click_1;
             // 
             // btnVolver
             // 
@@ -109,7 +99,6 @@
             ClientSize = new Size(1119, 590);
             Controls.Add(btnVolver);
             Controls.Add(btnFiltroVenceHoy);
-            Controls.Add(btnFiltroVencidos);
             Controls.Add(btnFiltroTodos);
             Controls.Add(lblTitulo);
             Controls.Add(gridSocios);
@@ -127,7 +116,6 @@
         private DataGridView gridSocios;
         private Label lblTitulo;
         private Button btnFiltroTodos;
-        private Button btnFiltroVencidos;
         private Button btnFiltroVenceHoy;
         private Button btnVolver;
     }
