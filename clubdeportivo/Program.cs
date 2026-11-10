@@ -1,6 +1,4 @@
 
-using clubdeportivo.igu;
-
 namespace clubdeportivo
 {
     internal static class Program
@@ -9,7 +7,7 @@ namespace clubdeportivo
         static void Main()
         {
             ApplicationConfiguration.Initialize();
-            Application.Run(new Dashboard());
+            Application.Run(new Login());
         }
     }
 }

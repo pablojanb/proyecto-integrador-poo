@@ -79,12 +79,20 @@ namespace clubdeportivo.igu.pagos
                     PagoExitoso popUp = new PagoExitoso();
                     popUp.ShowDialog();
                     this.Close();
+                } else
+                {
+                    ErrorMonto popUp = new ErrorMonto();
+                    popUp.ShowDialog();
                 }
 
             }
             catch (Exception ex)
             {
-
+                if (ex.GetType() == typeof(FormatException))
+                {
+                    FormatoInvalido formatoInvalido = new FormatoInvalido();
+                    formatoInvalido.ShowDialog();
+                }
             }
         }
     }
