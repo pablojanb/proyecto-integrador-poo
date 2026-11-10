@@ -11,6 +11,9 @@ namespace clubdeportivo.model
         private DateOnly fechaEntrega;
         private Boolean activo;
 
+        public Carnet()
+        {
+        }
         public Carnet(long personaId)
         {
             PersonaId = personaId;

@@ -21,5 +21,16 @@ namespace clubdeportivo.service
         {
             return repository.entregarCarnet(socioId);
         }
+
+        private Carnet obtenerCarnetPorSocioId(long socioId)
+        {
+            return repository.obtenerCarnetPorSocioId(socioId);
+        }
+
+        public Boolean socioTieneCarnetActivo(long socioId)
+        {
+            Carnet carnet = this.obtenerCarnetPorSocioId(socioId);
+            return carnet.Activo;
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using clubdeportivo.model;
 using clubdeportivo.service;
+using System.Diagnostics;
 
 namespace clubdeportivo.igu.carnets
 {
@@ -32,13 +33,22 @@ namespace clubdeportivo.igu.carnets
 
         private void btnEntregar_Click(object sender, EventArgs e)
         {
-            bool entregado = carnetService.entregarCarnet(socio.Id);
-            if (entregado)
+            bool tieneCarnetActivo = carnetService.socioTieneCarnetActivo(socio.Id);
+            if (!tieneCarnetActivo)
             {
-                CarnetEntregadoPopUp popUp = new CarnetEntregadoPopUp();
+                bool entregado = carnetService.entregarCarnet(socio.Id);
+                if (entregado)
+                {
+                    CarnetEntregadoPopUp popUp = new CarnetEntregadoPopUp();
+                    popUp.ShowDialog();
+                    this.Close();
+                }
+            } else
+            {
+                CarnetActivo popUp = new CarnetActivo();
                 popUp.ShowDialog();
-                this.Close();
             }
+            
         }
     }
 }

@@ -84,5 +84,56 @@ namespace clubdeportivo.repository
                 }
             }
         }
+
+        public Carnet obtenerCarnetPorSocioId(long socioId)
+        {
+            Carnet carnet = new();
+            MySqlConnection dbConnection = null;
+            try
+            {
+                dbConnection = DBConection.CrearConexion();
+                var query = "SELECT c.id, id_persona, fecha_emision, fecha_entrega, activo " +
+                    "FROM carnets c " +
+                    "JOIN socios s ON s.id = c.id_persona " +
+                    "WHERE s.id = @socioId";
+                MySqlCommand comando = new MySqlCommand(query, dbConnection);
+                comando.Parameters.AddWithValue("@socioId", socioId);
+
+                dbConnection.Open();
+
+                using (MySqlDataReader respuesta = comando.ExecuteReader())
+                {
+                    if (respuesta.Read())
+                    {
+                        carnet.Id = respuesta.GetInt64("id");
+                        carnet.PersonaId = respuesta.GetInt64("id_persona");
+                        carnet.FechaEmision = DateOnly.FromDateTime(
+                             respuesta.GetDateTime("fecha_emision")
+                         );
+                        carnet.FechaEntrega = DateOnly.FromDateTime(
+                            respuesta.GetDateTime("fecha_entrega")
+                        );
+                        carnet.Activo = respuesta.GetBoolean("activo");
+                        return carnet;
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine($"MySQL Error {ex.Number}: {ex.Message}");
+                throw;
+            }
+            finally
+            {
+                if (dbConnection != null && dbConnection.State == ConnectionState.Open)
+                {
+                    dbConnection.Close();
+                }
+            }
+        }
     }
 }
