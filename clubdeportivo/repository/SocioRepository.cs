@@ -3,7 +3,6 @@ using clubdeportivo.dto;
 using clubdeportivo.model;
 using MySql.Data.MySqlClient;
 using System.Data;
-using System.Diagnostics;
 
 namespace clubdeportivo.repository
 {
@@ -446,7 +445,7 @@ namespace clubdeportivo.repository
             }
         }
 
-        public Boolean pagarMembresia(long idSocio, decimal monto, decimal descuento)
+        public Boolean pagarMembresia(long idSocio, decimal monto, decimal descuento, long medioPagoId)
         {
             MySqlConnection dbConnection = null;
 
@@ -457,7 +456,6 @@ namespace clubdeportivo.repository
 
                 using (MySqlTransaction transaccion = dbConnection.BeginTransaction())
                 {
-                    // 1. Obtener la última membresía del socio
                     string queryMembresia =
                         "SELECT id " +
                         "FROM membresias " +
@@ -482,8 +480,6 @@ namespace clubdeportivo.repository
                         idMembresia = Convert.ToInt64(resultado);
                     }
 
-                    // 2. Actualizar el descuento de la membresía
-                    // 2. Acumular el descuento de la membresía
                     string queryDescuento =
                         "UPDATE membresias " +
                         "SET descuento = COALESCE(descuento, 0) + @descuento " +
@@ -496,19 +492,18 @@ namespace clubdeportivo.repository
                         comando.ExecuteNonQuery();
                     }
 
-                    // 3. Registrar el pago
                     string queryPago =
-                        "INSERT INTO pagos (id_membresia, monto) " +
-                        "VALUES (@idMembresia, @monto);";
+                        "INSERT INTO pagos (id_membresia, monto, fecha_hora, id_medio_pago) " +
+                        "VALUES (@idMembresia, @monto, NOW(), @id_medio_pago);";
 
                     using (MySqlCommand comando = new MySqlCommand(queryPago, dbConnection, transaccion))
                     {
                         comando.Parameters.AddWithValue("@idMembresia", idMembresia);
                         comando.Parameters.AddWithValue("@monto", monto);
+                        comando.Parameters.AddWithValue("@id_medio_pago", medioPagoId);
                         comando.ExecuteNonQuery();
                     }
 
-                    // 4. Verificar si la deuda fue cancelada
                     string queryDeuda =
                         "UPDATE membresias m " +
                         "SET m.deuda_cancelada = ( " +

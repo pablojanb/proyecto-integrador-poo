@@ -1,6 +1,4 @@
 
-using clubdeportivo.igu;
-
 namespace clubdeportivo
 {
     internal static class Program

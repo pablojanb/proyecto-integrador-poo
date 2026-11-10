@@ -1,7 +1,6 @@
 ﻿using clubdeportivo.dto;
 using clubdeportivo.model;
 using clubdeportivo.repository;
-using System.Diagnostics;
 
 namespace clubdeportivo.service
 {
@@ -52,14 +51,16 @@ namespace clubdeportivo.service
         public Boolean pagarMembresia(Socio socio, string medioPago, decimal monto, int cantCuotas)
         {
             var montoAdeudado = this.calcularDeudaSocio(socio.Id);
+            long medioPagoId = 1;
             if (montoAdeudado >= monto)
             {
                 decimal descuento = 0;
                 if (medioPago == "Tarjeta")
                 {
+                    medioPagoId = 2;
                     descuento = this.obtenerMontoDescuento(monto);
                 }
-                return repository.pagarMembresia(socio.Id, monto, descuento);
+                return repository.pagarMembresia(socio.Id, monto, descuento, medioPagoId);
             }
             return false;
         }
