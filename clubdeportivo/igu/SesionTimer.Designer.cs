@@ -76,7 +76,7 @@
             Controls.Add(lblTimer);
             Name = "SesionTimer";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "SesionTimer";
+            Text = "Alerta";
             ResumeLayout(false);
             PerformLayout();
         }

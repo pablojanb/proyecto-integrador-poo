@@ -49,18 +49,28 @@ namespace clubdeportivo.service
             return repository.tieneUltimaMembresiaVencida(dni);
         }
 
-        public Boolean pagarMembresia(Socio socio, string medioPago, decimal monto)
+        public Boolean pagarMembresia(Socio socio, string medioPago, decimal monto, int cantCuotas)
         {
             var montoAdeudado = this.calcularDeudaSocio(socio.Id);
             if (montoAdeudado >= monto)
             {
-                return repository.pagarMembresia(socio.Id, monto);
+                decimal descuento = 0;
+                if (medioPago == "Tarjeta")
+                {
+                    descuento = this.obtenerMontoDescuento(monto);
+                }
+                return repository.pagarMembresia(socio.Id, monto, descuento);
             }
             return false;
         }
         private decimal calcularDeudaSocio(long socioId)
         {
             return repository.calcularDeudaSocio(socioId);
+        }
+
+        private decimal obtenerMontoDescuento(decimal monto)
+        {
+            return monto * 10 / 100;
         }
     }
 }

@@ -35,6 +35,7 @@
             btnCancelar = new Button();
             btnAceptar = new Button();
             txtMonto = new TextBox();
+            cmbCantCuotas = new ComboBox();
             SuspendLayout();
             // 
             // lblTitulo
@@ -78,12 +79,13 @@
             cmbMonto.Name = "cmbMonto";
             cmbMonto.Size = new Size(362, 28);
             cmbMonto.TabIndex = 14;
+            cmbMonto.SelectedIndexChanged += cmbMonto_SelectedIndexChanged;
             // 
             // btnCancelar
             // 
             btnCancelar.BackColor = Color.DarkRed;
             btnCancelar.ForeColor = Color.White;
-            btnCancelar.Location = new Point(216, 303);
+            btnCancelar.Location = new Point(216, 344);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(164, 41);
             btnCancelar.TabIndex = 16;
@@ -95,7 +97,7 @@
             // 
             btnAceptar.BackColor = Color.Black;
             btnAceptar.ForeColor = Color.White;
-            btnAceptar.Location = new Point(33, 303);
+            btnAceptar.Location = new Point(33, 344);
             btnAceptar.Name = "btnAceptar";
             btnAceptar.Size = new Size(164, 41);
             btnAceptar.TabIndex = 15;
@@ -105,7 +107,7 @@
             // 
             // txtMonto
             // 
-            txtMonto.Location = new Point(29, 243);
+            txtMonto.Location = new Point(29, 295);
             txtMonto.Name = "txtMonto";
             txtMonto.Size = new Size(362, 27);
             txtMonto.TabIndex = 17;
@@ -113,11 +115,23 @@
             txtMonto.Click += txtMonto_Click;
             txtMonto.Leave += txtMonto_Leave;
             // 
+            // cmbCantCuotas
+            // 
+            cmbCantCuotas.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbCantCuotas.FormattingEnabled = true;
+            cmbCantCuotas.ImeMode = ImeMode.NoControl;
+            cmbCantCuotas.Items.AddRange(new object[] { "3 cuotas", "6 cuotas" });
+            cmbCantCuotas.Location = new Point(29, 247);
+            cmbCantCuotas.Name = "cmbCantCuotas";
+            cmbCantCuotas.Size = new Size(362, 28);
+            cmbCantCuotas.TabIndex = 18;
+            // 
             // PagosPopUp
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(429, 371);
+            ClientSize = new Size(429, 430);
+            Controls.Add(cmbCantCuotas);
             Controls.Add(txtMonto);
             Controls.Add(btnCancelar);
             Controls.Add(btnAceptar);
@@ -141,5 +155,6 @@
         private Button btnCancelar;
         private Button btnAceptar;
         private TextBox txtMonto;
+        private ComboBox cmbCantCuotas;
     }
 }

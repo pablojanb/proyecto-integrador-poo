@@ -172,7 +172,7 @@ namespace clubdeportivo.repository
                                 ") AS rn " +
                             "FROM membresias m " +
                         "), " +
-                        "total_pagos AS( " +
+                        "total_pagos AS ( " +
                             "SELECT " +
                                 "p.id_membresia, " +
                                 "SUM(p.monto) AS total_pagado " +
@@ -192,9 +192,10 @@ namespace clubdeportivo.repository
                             "per.apto_fisico AS aptoFisico, " +
 
                             "um.monto AS montoTotal, " +
+                            "COALESCE(um.descuento, 0) AS descuento, " +
                             "COALESCE(tp.total_pagado, 0) AS totalPagado, " +
 
-                            "um.monto - COALESCE(tp.total_pagado, 0) " +
+                            "(um.monto - COALESCE(um.descuento, 0) - COALESCE(tp.total_pagado, 0)) " +
                                 "AS diferenciaTotalYPagos, " +
 
                             "um.fecha_vencimiento AS fechaVencimiento " +
@@ -212,8 +213,9 @@ namespace clubdeportivo.repository
                             "ON tp.id_membresia = um.id " +
 
                         "WHERE um.fecha_vencimiento <= CURDATE() " +
+                        "AND um.deuda_cancelada = FALSE " +
 
-                        "ORDER BY s.num_afiliado; ";
+                        "ORDER BY s.num_afiliado;";
                 MySqlCommand comando = new MySqlCommand(query, dbConnection);
 
                 dbConnection.Open();
@@ -289,7 +291,7 @@ namespace clubdeportivo.repository
                                 ") AS rn " +
                             "FROM membresias m " +
                         "), " +
-                        "total_pagos AS( " +
+                        "total_pagos AS ( " +
                             "SELECT " +
                                 "p.id_membresia, " +
                                 "SUM(p.monto) AS total_pagado " +
@@ -310,8 +312,9 @@ namespace clubdeportivo.repository
 
                             "um.monto AS montoTotal, " +
                             "COALESCE(tp.total_pagado, 0) AS totalPagado, " +
+                            "COALESCE(um.descuento, 0) AS descuento, " +
 
-                            "um.monto - COALESCE(tp.total_pagado, 0) " +
+                            "(um.monto - COALESCE(um.descuento, 0) - COALESCE(tp.total_pagado, 0)) " +
                                 "AS diferenciaTotalYPagos, " +
 
                             "um.fecha_vencimiento AS fechaVencimiento " +
@@ -328,9 +331,10 @@ namespace clubdeportivo.repository
                         "LEFT JOIN total_pagos tp " +
                             "ON tp.id_membresia = um.id " +
 
-                        "WHERE DATE(um.fecha_vencimiento) = CURDATE() " +
+                        "WHERE um.fecha_vencimiento = CURDATE() " +
+                        "AND um.deuda_cancelada = FALSE " +
 
-                        "ORDER BY s.num_afiliado; ";
+                        "ORDER BY s.num_afiliado;";
                 MySqlCommand comando = new MySqlCommand(query, dbConnection);
 
                 dbConnection.Open();
@@ -403,6 +407,7 @@ namespace clubdeportivo.repository
                     "WITH ultima_membresia AS ( " +
                         "SELECT " +
                             "m.fecha_vencimiento, " +
+                            "m.deuda_cancelada, " +
                             "ROW_NUMBER() OVER ( " +
                                 "PARTITION BY m.id_socio " +
                                 "ORDER BY m.periodo DESC, m.id DESC " +
@@ -414,9 +419,10 @@ namespace clubdeportivo.repository
                     ") " +
                     "SELECT EXISTS ( " +
                         "SELECT 1 " +
-                        "FROM ultima_membresia " +
-                        "WHERE rn = 1 " +
-                        "AND fecha_vencimiento <= CURDATE() " +
+                        "FROM ultima_membresia um " +
+                        "WHERE um.rn = 1 " +
+                        "AND um.fecha_vencimiento <= CURDATE() " +
+                        "AND um.deuda_cancelada = FALSE " +
                     ");";
 
                 MySqlCommand comando = new MySqlCommand(query, dbConnection);
@@ -440,38 +446,88 @@ namespace clubdeportivo.repository
             }
         }
 
-        public Boolean pagarMembresia(long idSocio, decimal monto)
+        public Boolean pagarMembresia(long idSocio, decimal monto, decimal descuento)
         {
             MySqlConnection dbConnection = null;
 
             try
             {
                 dbConnection = DBConection.CrearConexion();
-
-                string query =
-                    "INSERT INTO pagos (id_membresia, monto) " +
-                    "SELECT id, @monto " +
-                    "FROM ( " +
-                        "SELECT " +
-                            "m.id, " +
-                            "ROW_NUMBER() OVER ( " +
-                                "ORDER BY m.periodo DESC, m.id DESC " +
-                            ") AS rn " +
-                        "FROM membresias m " +
-                        "WHERE m.id_socio = @idSocio " +
-                    ") AS ultima " +
-                    "WHERE rn = 1;";
-
-                MySqlCommand comando = new MySqlCommand(query, dbConnection);
-
-                comando.Parameters.AddWithValue("@idSocio", idSocio);
-                comando.Parameters.AddWithValue("@monto", monto);
-
                 dbConnection.Open();
 
-                int filasAfectadas = comando.ExecuteNonQuery();
+                using (MySqlTransaction transaccion = dbConnection.BeginTransaction())
+                {
+                    // 1. Obtener la última membresía del socio
+                    string queryMembresia =
+                        "SELECT id " +
+                        "FROM membresias " +
+                        "WHERE id_socio = @idSocio " +
+                        "ORDER BY periodo DESC, id DESC " +
+                        "LIMIT 1;";
 
-                return filasAfectadas > 0;
+                    long idMembresia;
+
+                    using (MySqlCommand comando = new MySqlCommand(queryMembresia, dbConnection, transaccion))
+                    {
+                        comando.Parameters.AddWithValue("@idSocio", idSocio);
+
+                        object resultado = comando.ExecuteScalar();
+
+                        if (resultado == null)
+                        {
+                            transaccion.Rollback();
+                            return false;
+                        }
+
+                        idMembresia = Convert.ToInt64(resultado);
+                    }
+
+                    // 2. Actualizar el descuento de la membresía
+                    // 2. Acumular el descuento de la membresía
+                    string queryDescuento =
+                        "UPDATE membresias " +
+                        "SET descuento = COALESCE(descuento, 0) + @descuento " +
+                        "WHERE id = @idMembresia;";
+
+                    using (MySqlCommand comando = new MySqlCommand(queryDescuento, dbConnection, transaccion))
+                    {
+                        comando.Parameters.AddWithValue("@descuento", descuento);
+                        comando.Parameters.AddWithValue("@idMembresia", idMembresia);
+                        comando.ExecuteNonQuery();
+                    }
+
+                    // 3. Registrar el pago
+                    string queryPago =
+                        "INSERT INTO pagos (id_membresia, monto) " +
+                        "VALUES (@idMembresia, @monto);";
+
+                    using (MySqlCommand comando = new MySqlCommand(queryPago, dbConnection, transaccion))
+                    {
+                        comando.Parameters.AddWithValue("@idMembresia", idMembresia);
+                        comando.Parameters.AddWithValue("@monto", monto);
+                        comando.ExecuteNonQuery();
+                    }
+
+                    // 4. Verificar si la deuda fue cancelada
+                    string queryDeuda =
+                        "UPDATE membresias m " +
+                        "SET m.deuda_cancelada = ( " +
+                            "SELECT COALESCE(SUM(p.monto), 0) " +
+                            "FROM pagos p " +
+                            "WHERE p.id_membresia = m.id " +
+                        ") >= (m.monto - COALESCE(m.descuento, 0)) " +
+                        "WHERE m.id = @idMembresia;";
+
+                    using (MySqlCommand comando = new MySqlCommand(queryDeuda, dbConnection, transaccion))
+                    {
+                        comando.Parameters.AddWithValue("@idMembresia", idMembresia);
+                        comando.ExecuteNonQuery();
+                    }
+
+                    transaccion.Commit();
+
+                    return true;
+                }
             }
             catch (MySqlException ex)
             {

@@ -71,6 +71,7 @@ namespace clubdeportivo.igu
                                 IngresoDeuda ingresoDeuda = new IngresoDeuda();
                                 ingresoDeuda.ShowDialog();
                                 this.Close();
+                                return;
                             }
                             Ingreso ingreso = ingresoService.obtenerUltimoIngresoPorPersonaId(persona.Id);
                             if (registro == "Ingreso")

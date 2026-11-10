@@ -56,14 +56,16 @@ CREATE TABLE IF NOT EXISTS membresias (
     monto DECIMAL,
     periodo DATE,
     fecha_vencimiento DATE,
+    descuento DECIMAL,
+    deuda_cancelada BOOLEAN,
 	FOREIGN KEY (id_socio) REFERENCES socios(id)
 );
 
-INSERT INTO membresias (id_socio, monto, periodo, fecha_vencimiento)
-SELECT 2, 30000.00, '2026-10-01', '2026-10-5' WHERE NOT EXISTS (SELECT 1 FROM membresias WHERE id_socio = 2);
+INSERT INTO membresias (id_socio, monto, periodo, fecha_vencimiento, deuda_cancelada)
+SELECT 2, 30000.00, '2026-10-01', '2026-10-5', FALSE WHERE NOT EXISTS (SELECT 1 FROM membresias WHERE id_socio = 2);
 
-INSERT INTO membresias (id_socio, monto, periodo, fecha_vencimiento)
-SELECT 3, 30000.00, '2026-11-01', '2026-11-10' WHERE NOT EXISTS (SELECT 1 FROM membresias WHERE id_socio = 3);
+INSERT INTO membresias (id_socio, monto, periodo, fecha_vencimiento, deuda_cancelada)
+SELECT 3, 30000.00, '2026-11-01', '2026-11-10', FALSE WHERE NOT EXISTS (SELECT 1 FROM membresias WHERE id_socio = 3);
 
 CREATE TABLE IF NOT EXISTS medios_pago (
 	id BIGINT PRIMARY KEY AUTO_INCREMENT,

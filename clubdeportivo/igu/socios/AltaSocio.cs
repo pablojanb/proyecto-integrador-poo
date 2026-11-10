@@ -98,8 +98,6 @@ namespace AltaSocioPrueba
 
         private void btnVolver_Click(object sender, EventArgs e)
         {
-            Dashboard dash = new Dashboard();
-            dash.Show();
             this.Close();
         }
 

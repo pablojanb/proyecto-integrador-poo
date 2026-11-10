@@ -1,9 +1,5 @@
-﻿
-
-using clubdeportivo.igu.ingresos;
-using clubdeportivo.model;
+﻿using clubdeportivo.model;
 using clubdeportivo.service;
-using System.Diagnostics;
 
 namespace clubdeportivo.igu.pagos
 {
@@ -16,6 +12,8 @@ namespace clubdeportivo.igu.pagos
             InitializeComponent();
             cmbIngreso.SelectedIndex = 0;
             cmbMonto.SelectedIndex = 0;
+            cmbCantCuotas.Enabled = false;
+            cmbCantCuotas.SelectedIndex = 0;
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -63,6 +61,14 @@ namespace clubdeportivo.igu.pagos
                 string registro = cmbIngreso.Text;
                 string medioPago = cmbMonto.Text;
                 decimal monto = decimal.Parse(txtMonto.Text);
+                int cantCuotas;
+                if (cmbCantCuotas.Text == "3 cuotas")
+                {
+                    cantCuotas = 3;
+                } else
+                {
+                    cantCuotas = 6;
+                }
                 if (cmbIngreso.Text == "DNI")
                 {
                     string dniSocio = txtDni.Text;
@@ -73,13 +79,14 @@ namespace clubdeportivo.igu.pagos
                     long nroSocio = long.Parse(txtDni.Text);
                     socio = socioService.obtenerSocioPorNroSocio(nroSocio);
                 }
-                bool pagoAceptado = socioService.pagarMembresia(socio, medioPago, monto);
+                bool pagoAceptado = socioService.pagarMembresia(socio, medioPago, monto, cantCuotas);
                 if (pagoAceptado)
                 {
                     PagoExitoso popUp = new PagoExitoso();
                     popUp.ShowDialog();
                     this.Close();
-                } else
+                }
+                else
                 {
                     ErrorMonto popUp = new ErrorMonto();
                     popUp.ShowDialog();
@@ -93,6 +100,18 @@ namespace clubdeportivo.igu.pagos
                     FormatoInvalido formatoInvalido = new FormatoInvalido();
                     formatoInvalido.ShowDialog();
                 }
+            }
+        }
+
+        private void cmbMonto_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbMonto.Text == "Tarjeta")
+            {
+                cmbCantCuotas.Enabled = true;
+            }
+            else
+            {
+                cmbCantCuotas.Enabled = false;
             }
         }
     }
