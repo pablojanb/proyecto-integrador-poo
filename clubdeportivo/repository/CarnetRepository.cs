@@ -110,9 +110,12 @@ namespace clubdeportivo.repository
                         carnet.FechaEmision = DateOnly.FromDateTime(
                              respuesta.GetDateTime("fecha_emision")
                          );
-                        carnet.FechaEntrega = DateOnly.FromDateTime(
+                        if (!respuesta.IsDBNull(respuesta.GetOrdinal("fecha_entrega")))
+                        {
+                            carnet.FechaEntrega = DateOnly.FromDateTime(
                             respuesta.GetDateTime("fecha_entrega")
                         );
+                        }
                         carnet.Activo = respuesta.GetBoolean("activo");
                         return carnet;
                     }
