@@ -116,6 +116,10 @@ INSERT INTO carnets (id, id_persona, fecha_emision, fecha_entrega, activo)
 SELECT 1, 2, '2026-03-04', NULL, FALSE
 WHERE NOT EXISTS (SELECT 1 FROM carnets WHERE id = 1);
 
+INSERT INTO carnets (id, id_persona, fecha_emision, fecha_entrega, activo)
+SELECT 2, 3, '2026-06-05', NULL, FALSE
+WHERE NOT EXISTS (SELECT 1 FROM carnets WHERE id = 2);
+
 DROP PROCEDURE IF EXISTS login;
 CREATE PROCEDURE login(in p_username varchar(50), in p_password varchar(200))
 begin
